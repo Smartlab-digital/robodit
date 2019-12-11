@@ -1,4 +1,69 @@
+@mixin font() {
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: normal;
+}
+
 ion-content{
   background: var(--color-main-gray-background);
   --background: var(--color-main-gray-background);
+  --overflow: hidden;
 }
+
+.input{
+  height: 50px;
+  --padding-start: 50px;
+  --padding-top: 15px;
+  --padding-bottom: 15px;
+  --background: var(--color-main-gray-background);
+
+  @include font();
+
+
+  font-size: 14px;
+  --font-size: 14px;
+  line-height: 20px;
+
+
+  color: #A3A3AC;
+}
+
+ion-button{
+  height: 50px;
+  --border-radius: 0px;
+  @include font();
+
+
+  &.green{
+    background: var(--color-main-green);
+    --background: var(--color-main-green);
+    color: white;
+    --color: white;
+  }
+}
+
+.input-block{
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 11px;
+
+  .left-icon{
+    position: relative;
+    z-index: 15;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    box-sizing: border-box;
+    height: 50px;
+    width: 50px;
+    padding-left: 10px;
+    margin-bottom: -50px;
+  }
+
+  .input{
+    margin: 0;
+  }
+}
+
