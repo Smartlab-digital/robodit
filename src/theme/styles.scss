@@ -1,0 +1,27 @@
+.input{
+  height: var(--height);
+  --padding-start: var(--height);
+  --padding-top: 15px;
+  --padding-bottom: 15px;
+  --background: var(--color-main-gray-background);
+
+  @include font();
+
+  font-size: 14px;
+  --font-size: 14px;
+  line-height: 20px;
+
+  color: #A3A3AC;
+
+  &.light{
+    --background: var(--color-light-gray-background);
+  }
+}
+
+.icon{
+  margin: 10px;
+
+  &:last-child{
+    margin-right: 0px;
+  }
+}

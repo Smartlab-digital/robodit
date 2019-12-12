@@ -5,13 +5,35 @@
   font-size: 18px;
   line-height: 21px;
 
-  text-align: center;
+
   color: #FFFFFF;
 
-
-  h3{
-    font-size: 18px;
-    align-items: center;
+  .center{
     font-weight: normal;
   }
+  .white-blue{
+    color: var(--color-white-blue);
+  }
+}
+
+h1.header{
+  font-size: 36px;
+  line-height: 42px;
+  margin-top: 24px;
+
+  & ~ .icon{
+    margin-top: 33px;
+  }
+}
+h2.header{
+  font-size: 24px;
+  line-height: 28px;
+}
+h3.header{
+  font-size: 18px;
+}
+h6.header{
+  font-size: 10px;
+  line-height: 12px;
+  margin-bottom: 8px;
 }

@@ -28,5 +28,8 @@
 @import "~@ionic/angular/css/flex-utils.css";
 
 
+@import "./theme/lib";
 @import "./theme/base";
 @import "./theme/text";
+@import "theme/styles";
+@import "./theme/grid";

@@ -1,8 +1,3 @@
-@mixin font() {
-  font-family: Roboto;
-  font-style: normal;
-  font-weight: normal;
-}
 
 ion-content{
   background: var(--color-main-gray-background);
@@ -10,22 +5,19 @@ ion-content{
   --overflow: hidden;
 }
 
-.input{
-  height: 50px;
-  --padding-start: 50px;
-  --padding-top: 15px;
-  --padding-bottom: 15px;
-  --background: var(--color-main-gray-background);
+.content{
+  display: flex;
+  flex-direction: column;
 
-  @include font();
-
-
-  font-size: 14px;
-  --font-size: 14px;
-  line-height: 20px;
+  height: 100%;
+  overflow: auto;
+  padding-bottom: 150px;
 
 
-  color: #A3A3AC;
+  & > *{
+    margin-left: 16px !important;
+    margin-right: 16px !important;
+  }
 }
 
 ion-button{
@@ -42,28 +34,10 @@ ion-button{
   }
 }
 
-.input-block{
-  display: flex;
-  flex-direction: column;
-  margin-bottom: 11px;
-
-  .left-icon{
-    position: relative;
-    z-index: 15;
-
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
-    box-sizing: border-box;
-    height: 50px;
-    width: 50px;
-    padding-left: 10px;
-    margin-bottom: -50px;
-  }
-
-  .input{
-    margin: 0;
+app-service-level-card, app-line-handler-card{
+  width: 100%;
+  margin-bottom: 26px;
+  &:last-child{
+    margin-bottom: 4px;
   }
 }
-

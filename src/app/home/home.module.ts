@@ -5,9 +5,7 @@ import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 
 import { HomePage } from './home.page';
-import {HeaderComponent} from "../components/header/header.component";
-import {LoginScreenComponent} from "../components/login-screen/login-screen.component";
-
+import {ComponentsModule} from "../components/components.module";
 @NgModule({
   imports: [
     CommonModule,
@@ -18,8 +16,9 @@ import {LoginScreenComponent} from "../components/login-screen/login-screen.comp
         path: '',
         component: HomePage
       }
-    ])
+    ]),
+    ComponentsModule
   ],
-  declarations: [HomePage, HeaderComponent, LoginScreenComponent]
+  declarations: [HomePage]
 })
 export class HomePageModule {}

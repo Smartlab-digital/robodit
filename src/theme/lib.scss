@@ -1,0 +1,11 @@
+@mixin flex($dir: row, $align: center, $justify: center) {
+  display: flex;
+  @if $dir { flex-direction: $dir }
+  @if $justify { justify-content: $justify }
+  @if $align { align-items: $align }
+}
+@mixin font() {
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: normal;
+}
