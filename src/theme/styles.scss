@@ -25,3 +25,42 @@
     margin-right: 0px;
   }
 }
+
+
+.legends{
+  margin-top: 20px;
+  padding: 0 6px 100px 6px;
+  @include font();
+  font-size: 11px;
+  line-height: 145%;
+
+  .legend{
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    height: 52px;
+
+    background: linear-gradient(to right, #37363E 0%, #37363E var(--progress), #00000000 var(--progress), #00000000 100%);;
+
+    &.active{
+      background: linear-gradient(to right, #51505B 0%, #51505B var(--progress), #00000000 var(--progress), #00000000 100%);;
+    }
+
+    &:last-child{
+      border-bottom-width: 0px;
+    }
+  }
+
+  .progress, .description, .value{
+    @include flex();
+    color: white;
+    padding: 0 12px;
+  }
+  .value{
+    white-space: nowrap;
+  }
+
+  .hr{
+    border-left: 1px solid rgba(255, 255, 255, 0.2);
+    width: 0;
+    height: 25px;
+  }
+}

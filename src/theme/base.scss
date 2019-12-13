@@ -11,8 +11,6 @@ ion-content{
 
   height: 100%;
   overflow: auto;
-  padding-bottom: 150px;
-
 
   & > *{
     margin-left: 16px !important;
@@ -42,8 +40,20 @@ ion-button{
 app-service-level-card, app-line-handler-card{
   width: 100%;
   display: flex;
-  margin-bottom: 26px;
+  margin-bottom: 16px;
   &:last-child{
     margin-bottom: 4px;
   }
+}
+
+app-range-input{
+  height: 100%;
+  min-width: 40px;
+  padding: 10px 0;
+  display: flex;
+  justify-content: space-around;
+}
+
+app-line-chart{
+  margin: 20px 0 0 0 !important;
 }

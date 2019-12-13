@@ -1,15 +1,11 @@
-import {Component, ElementRef, Input, OnInit, ViewChild} from '@angular/core';
-import {getRandomColor, rgba} from "ng-chartjs";
+import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'app-service-level-card',
-  templateUrl: './service-level-card.component.html',
-  styleUrls: ['./service-level-card.component.scss'],
+  selector: 'app-line-chart',
+  templateUrl: './line-chart.component.html',
+  styleUrls: ['./line-chart.component.scss'],
 })
-export class ServiceLevelCardComponent implements OnInit {
-  @ViewChild('mainChart', null) mainChart: ElementRef;
-  @Input('red-fill') fill: 'border' | 'background' = null;
-  @Input('mode') mode: 'full' | 'min' = 'min';
+export class LineChartComponent implements OnInit {
 
   constructor() { }
 
@@ -115,31 +111,5 @@ export class ServiceLevelCardComponent implements OnInit {
       }]
     },
   };
-  options = {
-    //responsive: true,
-    //maintainAspectRatio: false,
 
-
-    legend: { display: false },
-    title: {
-      display: false,
-    },
-
-    scales: {
-      xAxes: [{
-        gridLines: false,
-        ticks: {
-          display: false,
-          beginAtZero: true,
-        }
-      }],
-      yAxes: [{
-        gridLines: false,
-        ticks: {
-          display: false,
-          beginAtZero: true
-        }
-      }]
-    },
-  };
 }

@@ -1,3 +1,9 @@
-<p>
-  range-input works!
-</p>
+<div class="app-range-input" #box>
+  <div class="cursor"
+       [ngClass]=" { active: active } "
+       #cursor
+       (touchstart)="startMove($event)"
+       (touchmove)="move($event)"
+       (touchend)="endMove($event)"
+  > {{ value.label }} </div>
+</div>

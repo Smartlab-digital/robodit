@@ -1,9 +1,9 @@
-<div class="card"
+<div class="card main-chart"
      [ngClass]="{ full: mode == 'full' , red: fill == 'background', 'red-border': fill == 'border' }"
 >
   <div class="column justify-start align-start full-width full-height" *ngIf="mode === 'full'">
     <div class="row justify-start">
-      <h2 class="header">150.3% </h2>
+      <h1 class="small header">150.3% </h1>
       <h6 class="header" style="margin-left: 8px">
         First Call
         <br>
@@ -14,6 +14,7 @@
     <div class="grid-row row">
       <div class="main-chart-grid column content">
         <canvas
+            height="162" width="380"
             ngChartjs [datasets]="main_dataset"
             [labels]="' '.repeat(data.length - 1).split('')"
             [options]="fullChartOptions" [colors]="mainColors" chartType="bar"
@@ -23,7 +24,7 @@
         </div>
       </div>
       <div class="sidebar">
-
+        <app-range-input></app-range-input>
       </div>
     </div>
     <div class="grid-row row">

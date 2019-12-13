@@ -1,0 +1,45 @@
+.app-range-input{
+  display: flex;
+  flex-direction: row;
+  align-items: flex-end;
+  justify-content: center;
+
+  width: 4px;
+  height: 100%;
+
+  background: rgba(255, 255, 255, 0.15);
+
+  .cursor{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    transition: 0.2s transform ease;
+    flex-shrink: 0;
+    width: 30px;
+    height: 30px;
+    background: #FFFFFF;
+    border: 4px solid #2B2A30;
+    box-sizing: border-box;
+    border-radius: 100px;
+    margin-top:  -10px;
+
+    transform: scale(1);
+
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 8px;
+    line-height: 9px;
+
+    color: #27262E;
+
+
+    &.active{
+      transition: 0.2s transform ease;
+
+      transform: scale(1.2);
+
+    }
+  }
+}

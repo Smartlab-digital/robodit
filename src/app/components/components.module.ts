@@ -8,18 +8,20 @@ import {LineHandlerCardComponent} from "./line-handler-card/line-handler-card.co
 import {IonicModule} from "@ionic/angular";
 import {NgChartjsModule} from "ng-chartjs";
 import {RowSelectComponent} from "./row-select/row-select.component";
+import {RangeInputComponent} from "./range-input/range-input.component";
+import {LineChartComponent} from "./line-chart/line-chart.component";
 
 
 
 @NgModule({
-  declarations: [HeaderComponent, LoginScreenComponent, ServiceLevelCardComponent, LineHandlerCardComponent, RowSelectComponent],
+  declarations: [HeaderComponent, LoginScreenComponent, ServiceLevelCardComponent, LineHandlerCardComponent, RowSelectComponent, RangeInputComponent, LineChartComponent],
   imports: [
     CommonModule,
     IonicModule,
     NgChartjsModule
   ],
   exports: [
-    HeaderComponent, LoginScreenComponent, ServiceLevelCardComponent, LineHandlerCardComponent
+    HeaderComponent, LoginScreenComponent, ServiceLevelCardComponent, LineHandlerCardComponent, RowSelectComponent, RangeInputComponent, LineChartComponent
   ]
 })
 export class ComponentsModule { }
