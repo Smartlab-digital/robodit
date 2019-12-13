@@ -1,0 +1,7 @@
+<div class="app-row-select row">
+  <div class="option" [ngClass]="{ selected: 2 == i }" *ngFor="let opt of options; let i = index">
+    <div class="text">
+      {{ opt }}
+    </div>
+  </div>
+</div>

@@ -1,0 +1,160 @@
+.row{
+  @include flex();
+}
+.column{
+  @include flex(column);
+
+  &.margin{
+    margin: 10px 0;
+  }
+}
+.row, .column{
+  .full-width{
+    width: 100%;
+  }
+  .full-height{
+    height: 100%;
+  }
+  &.align-start{
+    align-items: flex-start;
+  }
+  &.align-end{
+    align-items: flex-end;
+  }
+  &.justify-between{
+    justify-content: space-between;
+  }
+  &.justify-start{
+    justify-content: flex-start;
+  }
+  &.justify-end{
+    justify-content: flex-end;
+  }
+}
+
+.input-block{
+  --height: 50px;
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 11px;
+
+  .right-icon, .left-icon{
+    position: relative;
+    z-index: 15;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    box-sizing: border-box;
+    height: var(--height);
+    width: var(--height);
+  }
+  .left-icon{
+    padding-left: 10px;
+    margin-bottom: calc(0px - var(--height));
+
+  }
+  .right-icon{
+    margin-left: auto;
+    padding-right: 10px;
+    margin-top: calc(0px - var(--height));
+  }
+
+  .input{
+    margin: 0;
+    height: var(--height);
+  }
+
+  &.small{
+    --height: 36px;
+
+    .left-icon{
+      padding-left: 2px;
+    }
+  }
+}
+
+.card{
+  @include flex(row, flex-start, space-between);
+  width: 100%;
+  height: 66px;
+  padding: 10px 0 0 10px;
+  background-color: var(--color-light-gray-background);
+
+  fill: #A3A3AC;
+
+  .header{
+    margin: 0px;
+  }
+
+  .toolbar{
+    @include flex(column);
+    height: 100%;
+    padding-bottom: 10px;
+    padding-right: 16px;
+  }
+
+  &.red{
+    background-color: var(--color-main-red);
+    fill: white;
+  }
+  &.red-border{
+    box-shadow: inset 0 0 0 1px var(--color-main-red);
+    fill: white;
+  }
+
+  .canvas-block{
+    @include flex(row, flex-end, flex-end);
+    width: 200px;
+    padding-right: 10px;
+    margin-left: auto;
+    margin-top: auto;
+    height: 30px;
+
+    canvas{
+      height: 30px;
+      width: 200px;
+    }
+  }
+}
+
+.cards-list{
+  margin-left:  0 !important;
+  margin-right: 0 !important;
+
+  .card{
+    margin-right: 16px;
+    margin-left: 16px;
+
+    &.full{
+      margin-left: 0;
+      margin-right: 0;
+    }
+  }
+}
+
+.grid-row{
+  @include flex(row, flex-end, flex-end);
+  --sidebar-width: 40px;
+  width: 100%;
+  height: auto;
+
+  .content{
+    width: 100%;
+    height: min-content;
+    min-height: auto;
+    padding: 6px 16px 6px 4px;
+
+    & > *{
+      margin: 0 !important;
+    }
+  }
+  .sidebar{
+    @include flex(row, center, flex-start);
+    flex-shrink: 0;
+    width: var(--sidebar-width);
+    min-height: auto;
+    height: 100%;
+  }
+}

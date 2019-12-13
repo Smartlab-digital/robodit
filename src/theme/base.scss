@@ -17,6 +17,11 @@ ion-content{
   & > *{
     margin-left: 16px !important;
     margin-right: 16px !important;
+
+    &.full{
+      margin-left:  0 !important;
+      margin-right: 0 !important;
+    }
   }
 }
 
@@ -36,6 +41,7 @@ ion-button{
 
 app-service-level-card, app-line-handler-card{
   width: 100%;
+  display: flex;
   margin-bottom: 26px;
   &:last-child{
     margin-bottom: 4px;

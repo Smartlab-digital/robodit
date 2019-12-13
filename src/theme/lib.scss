@@ -4,8 +4,8 @@
   @if $justify { justify-content: $justify }
   @if $align { align-items: $align }
 }
-@mixin font() {
-  font-family: Roboto;
+@mixin font($font: Roboto) {
+  @if ($font) { font-family: $font}
   font-style: normal;
   font-weight: normal;
 }

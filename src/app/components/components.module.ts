@@ -7,11 +7,12 @@ import {ServiceLevelCardComponent} from "./service-level-card/service-level-card
 import {LineHandlerCardComponent} from "./line-handler-card/line-handler-card.component";
 import {IonicModule} from "@ionic/angular";
 import {NgChartjsModule} from "ng-chartjs";
+import {RowSelectComponent} from "./row-select/row-select.component";
 
 
 
 @NgModule({
-  declarations: [HeaderComponent, LoginScreenComponent, ServiceLevelCardComponent, LineHandlerCardComponent],
+  declarations: [HeaderComponent, LoginScreenComponent, ServiceLevelCardComponent, LineHandlerCardComponent, RowSelectComponent],
   imports: [
     CommonModule,
     IonicModule,

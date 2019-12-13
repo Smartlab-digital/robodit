@@ -1,0 +1,32 @@
+@import "../../../theme/lib";
+
+.card{
+  &.full{
+    height: auto;
+    padding-bottom: 30px;
+    padding-right: 10px;
+  }
+
+  .main-chart-grid{
+    overflow: hidden;
+    padding-top: 20px;
+
+    .labels{
+      width: calc(100% - 26px);
+      margin-left: 22px !important;
+      margin-top: -30px !important;
+      padding-top: 5px;
+      position: relative;
+      z-index: 20;
+      background: #2b2a30;
+      border-top: 2px solid rgba(255, 255, 255, 0.05);
+
+      .item{
+        @include font(Montserrat);
+        font-size: 10px;
+        line-height: 12px;
+        color: #bdbdbd;
+      }
+    }
+  }
+}

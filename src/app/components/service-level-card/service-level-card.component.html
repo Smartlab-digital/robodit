@@ -1,8 +1,52 @@
 <div class="card"
-     [ngClass]="{ red: mode == 'background', 'red-border': mode == 'border' }"
+     [ngClass]="{ full: mode == 'full' , red: fill == 'background', 'red-border': fill == 'border' }"
 >
-  <div class="column between align-start full-width full-height">
-    <div class="row">
+  <div class="column justify-start align-start full-width full-height" *ngIf="mode === 'full'">
+    <div class="row justify-start">
+      <h2 class="header">150.3% </h2>
+      <h6 class="header" style="margin-left: 8px">
+        First Call
+        <br>
+        Resolution (FCR)
+      </h6>
+    </div>
+
+    <div class="grid-row row">
+      <div class="main-chart-grid column content">
+        <canvas
+            ngChartjs [datasets]="main_dataset"
+            [labels]="' '.repeat(data.length - 1).split('')"
+            [options]="fullChartOptions" [colors]="mainColors" chartType="bar"
+        ></canvas>
+        <div class="labels row justify-between">
+          <div class="item" *ngFor="let item of labels">{{ item }}</div>
+        </div>
+      </div>
+      <div class="sidebar">
+
+      </div>
+    </div>
+    <div class="grid-row row">
+      <div class="content">
+        <app-row-select></app-row-select>
+      </div>
+      <div class="sidebar">
+        <svg width="30" height="30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M2.50002 10H25V13.75H27.5V2.50002C27.5 1.80967 26.9404 1.25004 26.2501 1.25004H21.2501V0H18.75V1.24998H15V0H12.5V1.24998H8.74998V0H6.24996V1.24998H1.24998C0.559629 1.24998 0 1.80967 0 2.50002V22.5C0 23.1904 0.559629 23.75 1.24998 23.75H12.5V21.25H2.50002V10ZM2.50002 3.75H6.25002V4.99998H8.75004V3.75H12.5V4.99998H15V3.75H18.75V4.99998H21.25V3.75H25V7.5H2.50002V3.75Z" fill="white"/>
+          <path d="M7.50003 12.5H5V15H7.50003V12.5Z" fill="white"/>
+          <path d="M12.5 12.5H10V15H12.5V12.5Z" fill="white"/>
+          <path d="M17.5 12.5H15V15H17.5V12.5Z" fill="white"/>
+          <path d="M7.50003 16.25H5V18.75H7.50003V16.25Z" fill="white"/>
+          <path d="M12.5 16.25H10V18.75H12.5V16.25Z" fill="white"/>
+          <path d="M22.5 15C18.3579 15 15 18.3579 15 22.5C15 26.6421 18.3579 30 22.5 30C26.6421 30 30 26.6422 30 22.5C29.9952 18.3599 26.6401 15.0048 22.5 15ZM22.5 27.5C19.7386 27.5 17.5 25.2614 17.5 22.5C17.5 19.7386 19.7386 17.5 22.5 17.5C25.2614 17.5 27.5 19.7386 27.5 22.5C27.5 25.2614 25.2614 27.5 22.5 27.5Z" fill="white"/>
+          <path d="M22.8462 22.0157L21.04 19.3057L18.96 20.6919L21.46 24.4419C21.8483 25.0085 22.6176 25.1621 23.1937 24.7882L26.9437 22.2881L25.5574 20.2081L22.8462 22.0157Z" fill="white"/>
+        </svg>
+      </div>
+    </div>
+  </div>
+
+  <div class="column between align-start full-width full-height" *ngIf="mode === 'min'">
+    <div class="align-end row">
       <h6 class="header">Операторов на линии</h6>
       <div style="margin-left: 6px">
         <svg width="8" height="8" viewBox="0 0 8 8" xmlns="http://www.w3.org/2000/svg">
@@ -10,6 +54,7 @@
         </svg>
       </div>
     </div>
+
     <div class="row full-width full-height">
       <h2 class="header">
         150
@@ -17,8 +62,8 @@
       <div class="canvas-block">
         <canvas width="200px" height="30px" ngChartjs [datasets]="dataset"
                 [labels]="' '.repeat(data.length - 1).split('')"
-                [options]="options" [colors]="colours"
-                chartType="bar"></canvas>
+                [options]="options" [colors]="colours" chartType="bar"
+        ></canvas>
       </div>
     </div>
   </div>
