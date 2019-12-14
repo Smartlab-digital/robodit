@@ -2,13 +2,18 @@
      [ngClass]="{ full: mode == 'full' , red: fill == 'background', 'red-border': fill == 'border' }"
 >
   <div class="column justify-start align-start full-width full-height" *ngIf="mode === 'full'">
-    <div class="row justify-start">
+    <div class="row full-width justify-start">
       <h1 class="small header">150.3% </h1>
       <h6 class="header" style="margin-left: 8px">
         First Call
         <br>
         Resolution (FCR)
       </h6>
+      <div style='margin-left: auto; padding-right: 12px' class="row" (click)="mode = 'min'">
+        <svg width="15" height="15" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M8.82658 7.50082L14.7251 1.60226C15.0916 1.2361 15.0916 0.641989 14.7251 0.27583C14.3587 -0.0906413 13.7652 -0.0906413 13.3987 0.27583L7.50016 6.17439L1.60128 0.27583C1.23481 -0.0906413 0.641325 -0.0906413 0.274854 0.27583C-0.0916178 0.641989 -0.0916178 1.2361 0.274854 1.60226L6.17373 7.50082L0.274854 13.3994C-0.0916178 13.7655 -0.0916178 14.3596 0.274854 14.7258C0.458089 14.9087 0.698234 15.0003 0.938067 15.0003C1.1779 15.0003 1.41804 14.9087 1.60128 14.7255L7.50016 8.82693L13.3987 14.7255C13.582 14.9087 13.8221 15.0003 14.0619 15.0003C14.3018 15.0003 14.5419 14.9087 14.7251 14.7255C15.0916 14.3593 15.0916 13.7652 14.7251 13.3991L8.82658 7.50082Z" fill="white"/>
+        </svg>
+      </div>
     </div>
 
     <div class="grid-row row">
@@ -46,8 +51,8 @@
     </div>
   </div>
 
-  <div class="column between align-start full-width full-height" *ngIf="mode === 'min'">
-    <div class="align-end row">
+  <div class="column between align-start full-width full-height" *ngIf="chart_preview && mode === 'min'">
+    <div class="align-end row" (click)="mode = 'full'">
       <h6 class="header">Операторов на линии</h6>
       <div style="margin-left: 6px">
         <svg width="8" height="8" viewBox="0 0 8 8" xmlns="http://www.w3.org/2000/svg">
@@ -67,5 +72,23 @@
         ></canvas>
       </div>
     </div>
+  </div>
+  <div *ngIf="!chart_preview && mode === 'min'" class="column between align-start" (click)="mode = 'full'">
+    <div class="row">
+      <h6 class="header">Операторов на линии</h6>
+      <div style="margin-left: 6px">
+        <svg width="8" height="8" viewBox="0 0 8 8"  xmlns="http://www.w3.org/2000/svg">
+          <path d="M0.148501 1.89842C0.247392 1.79945 0.364616 1.75 0.500065 1.75H7.49996C7.63547 1.75 7.75261 1.79945 7.85158 1.89842C7.95055 1.9975 8 2.11464 8 2.25007C8 2.38546 7.95055 2.5026 7.85158 2.6016L4.35162 6.10156C4.25254 6.20054 4.13539 6.25009 4 6.25009C3.86461 6.25009 3.74735 6.20054 3.64846 6.10156L0.148501 2.60157C0.0496368 2.5026 0 2.38546 0 2.25004C0 2.11464 0.0496368 1.9975 0.148501 1.89842Z"/>
+        </svg>
+      </div>
+    </div>
+    <h2 class="header">
+      150
+    </h2>
+  </div>
+  <div class="toolbar" *ngIf="!chart_preview && mode === 'min'" (click)="mode = 'full'">
+    <svg width="30" height="26" viewBox="0 0 30 26" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M27.5 25V0H23.5V25H20.5V6H16.5V25H13.5V12H9.5V25H6.5V18H2.5V25H0V26H30V25H27.5Z" fill="white"/>
+    </svg>
   </div>
 </div>

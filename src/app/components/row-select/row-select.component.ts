@@ -14,7 +14,7 @@ export class RowSelectComponent implements OnInit {
     '12 Ч',
     'День'
   ];
-
+  selected: number = 0;
 
   constructor() { }
 

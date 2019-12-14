@@ -1,5 +1,9 @@
 <div class="app-row-select row">
-  <div class="option" [ngClass]="{ selected: 2 == i }" *ngFor="let opt of options; let i = index">
+  <div class="option"
+       [ngClass]="{ selected: selected == i }"
+       *ngFor="let opt of options; let i = index"
+       (click)="selected = i"
+  >
     <div class="text">
       {{ opt }}
     </div>

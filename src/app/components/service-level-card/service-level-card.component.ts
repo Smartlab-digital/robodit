@@ -1,5 +1,4 @@
 import {Component, ElementRef, Input, OnInit, ViewChild} from '@angular/core';
-import {getRandomColor, rgba} from "ng-chartjs";
 
 @Component({
   selector: 'app-service-level-card',
@@ -9,7 +8,8 @@ import {getRandomColor, rgba} from "ng-chartjs";
 export class ServiceLevelCardComponent implements OnInit {
   @ViewChild('mainChart', null) mainChart: ElementRef;
   @Input('red-fill') fill: 'border' | 'background' = null;
-  @Input('mode') mode: 'full' | 'min' = 'min';
+  mode: 'full' | 'min' = 'min';
+  @Input('chart_preview') chart_preview = false;
 
   constructor() { }
 

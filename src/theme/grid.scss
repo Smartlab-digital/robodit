@@ -97,13 +97,18 @@
     padding-right: 16px;
   }
 
-  &.red{
-    background-color: var(--color-main-red);
-    fill: white;
-  }
-  &.red-border{
-    box-shadow: inset 0 0 0 1px var(--color-main-red);
-    fill: white;
+  transition: 0.1s background-color ease, 0s all ease;
+  &:not(.full){
+    &.red{
+      transition: 0.1s background-color ease, 0s all ease;
+      background-color: var(--color-main-red);
+      fill: white;
+    }
+    &.red-border{
+      transition: 0.1s background-color ease, 0s all ease;
+      box-shadow: inset 0 0 0 1px var(--color-main-red);
+      fill: white;
+    }
   }
 
   .canvas-block{
