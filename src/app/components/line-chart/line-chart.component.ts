@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
 
 @Component({
   selector: 'app-line-chart',
@@ -6,51 +6,53 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./line-chart.component.scss'],
 })
 export class LineChartComponent implements OnInit {
+  @ViewChild('chart', null) chartEl: ElementRef;
 
   constructor() { }
 
   ngOnInit() {}
 
-  data = [3, 5, 2, 5,6, 7, 9, 8, 4, 5, 3, 5, 7, 3,  6, 7, 9, 8, 4, 5, 3, 5, 2, 4, 5, 2];
+  get chartHeight() {
+    return (this.chartEl && this.chartEl.nativeElement.clientHeight) || 0;
+  }
+
+  data  = [3, 5, 2, 5, 6, 7, 9, 8, 4, 5, 3, 5, 7, 3, 2];
+  data2 = [7, 3, 6, 7, 9, 7, 2, 3, 4, 5, 2, 4, 5, 8, 1];
+
+
+  chartLabels = [
+    {
+      text: '40%',
+      x: 0.38,
+      y: 0.65
+    },
+    {
+      text: '70%',
+      x: 0.7,
+      y: 0.5
+    }
+  ];
 
   get dataset() {
     return [{
       data: this.data,
-      barThickness: Math.ceil(200 / this.data.length - 4),
-      borderWidth: 0
-    }];
-  }
-  get main_dataset() {
-    return [{
-      data: this.data,
-      //(this.mainChart.nativeElement.clientWidth - 50)
-      barThickness: Math.ceil(200 / this.data.length - 4),
-      borderWidth: 0
-    }];
-  }
-
-  redValueAfter: number = 5;
-  get mainColors() {
-    const colors = [];
-    for (let v of this.data) {
-      if (v > this.redValueAfter) {
-        colors.push('#E74A55');
-      } else {
-        colors.push('#2FA39E');
-      }
-    }
-
-    return[{
-      backgroundColor: colors,
+      fill: true,
+      pointRadius: 0
+    }, {
+      data: this.data2,
+      fill: true,
+      pointRadius: 0
     }];
   }
 
   colours = [{
-    fillColor: 'rgba(255, 255, 255, 0.8)',
-    strokeColor: 'rgba(255, 255, 255, 0.8)',
-    highlightFill: 'rgba(255, 255, 255, 0.8)',
-    highlightStroke: 'rgba(255, 255, 255, 0.8)',
-    backgroundColor: '#d5d4d6'
+    backgroundColor: 'rgba(128, 159, 255, 0.11)',
+    borderColor: 'rgba(128, 159, 255, 0.6)',
+    borderWidth: 1
+  }, {
+    backgroundColor: 'rgba(128, 159, 255, 0.11)',
+    borderColor: 'rgba(128, 159, 255, 0.6)',
+    borderWidth: 1
   }];
 
   labels = ['00', '06', '12', '16', '24'];

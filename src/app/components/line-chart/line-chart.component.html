@@ -8,11 +8,21 @@
     <div class="grid-row row">
       <div class="main-chart-grid column content">
         <canvas
+            #chart
              height="162" width="380"
-             ngChartjs [datasets]="main_dataset"
+             ngChartjs [datasets]="dataset"
              [labels]="' '.repeat(data.length - 1).split('')"
-             [options]="fullChartOptions" [colors]="mainColors" chartType="bar"
+             [options]="fullChartOptions" [colors]="colours" chartType="line"
          ></canvas>
+        <div class="chart-labels">
+          <div
+              *ngFor="let item of chartLabels"
+              [ngStyle]="{ top: '-' + ((chartHeight - 30) * item.y + 37) + 'px', left: 'calc( 12px + (100% - 24px) *' + item.x + ')'}"
+              class="label"
+          >
+            {{ item.text }}
+          </div>
+        </div>
         <div class="labels row justify-between">
           <div class="item" *ngFor="let item of labels">{{ item }}</div>
         </div>
