@@ -1,4 +1,5 @@
 import {Component, ElementRef, Input, OnInit, ViewChild} from '@angular/core';
+import {NgChartjsDirective} from "ng-chartjs";
 
 @Component({
   selector: 'app-service-level-card',
@@ -6,10 +7,21 @@ import {Component, ElementRef, Input, OnInit, ViewChild} from '@angular/core';
   styleUrls: ['./service-level-card.component.scss'],
 })
 export class ServiceLevelCardComponent implements OnInit {
-  @ViewChild('mainChart', { static: false }) mainChart: ElementRef;
+  _mainChart: any;
+  @ViewChild('mainChart', { static: false })
+  get mainChart() {
+    return this._mainChart;
+  }
+  set mainChart(v: ElementRef) {
+    this._mainChart = v;
+    this.refresh();
+  }
+;
+
   @Input('red-fill') fill: 'border' | 'background' = null;
   mode: 'full' | 'min' = 'min';
   @Input('chart_preview') chart_preview = false;
+  @ViewChild(NgChartjsDirective, { static: false }) _chart: NgChartjsDirective;
 
   constructor() { }
 
@@ -26,15 +38,34 @@ export class ServiceLevelCardComponent implements OnInit {
     const length = 26; //Math.ceil(10 + 10 * Math.random());
     const minValue = Math.floor(20 * Math.random());
     const maxValue = Math.ceil(21 + 50 * Math.random());
+    this.redValueAfter =  maxValue / 1.75;
 
     const data = [];
+    const colors = [];
 
     for (let i = 0; i < length; i++) {
-      data.push(minValue + Math.ceil(maxValue * Math.random()));
+      const v = maxValue * Math.random();
+      data.push(v);
+
+      if (v > this.redValueAfter) {
+        colors.push('#E74A55');
+      } else {
+        colors.push('#2FA39E');
+      }
     }
 
     this.data = data;
-    this.redValueAfter =  maxValue / 1.75;
+    this.mainColors = [{
+      backgroundColor: colors,
+    }];
+
+    this.refresh();
+  }
+  refresh() {
+    setTimeout( () => {
+      if (!this._chart) return;
+      (this._chart as any).refresh();
+    });
   }
 
   get dataset() {
@@ -45,29 +76,18 @@ export class ServiceLevelCardComponent implements OnInit {
     }];
   }
   get main_dataset() {
+    const width = Math.ceil((this.chartWidth - 40) / this.data.length - 6) ;
+
     return [{
       data: this.data,
       //(this.mainChart.nativeElement.clientWidth - 50)
-      barThickness: Math.ceil(this.chartWidth / this.data.length - 2),
+      barThickness: width,
       borderWidth: 0
     }];
   }
 
   redValueAfter: number;
-  get mainColors() {
-    const colors = [];
-    for (let v of this.data) {
-      if (v > this.redValueAfter) {
-        colors.push('#E74A55');
-      } else {
-        colors.push('#2FA39E');
-      }
-    }
-
-    return[{
-      backgroundColor: colors,
-    }];
-  }
+  mainColors: any;
 
   colours = [{
     fillColor: 'rgba(255, 255, 255, 0.8)',
