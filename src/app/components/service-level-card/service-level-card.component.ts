@@ -36,8 +36,8 @@ export class ServiceLevelCardComponent implements OnInit {
   data: any;
   generateRandomChart() {
     const length = 26; //Math.ceil(10 + 10 * Math.random());
-    const minValue = Math.floor(20 * Math.random());
-    const maxValue = Math.ceil(21 + 50 * Math.random());
+    const minValue = Math.floor(40 * Math.random());
+    const maxValue = Math.ceil(101 + 300 * Math.random());
     this.redValueAfter =  maxValue / 1.75;
 
     const data = [];

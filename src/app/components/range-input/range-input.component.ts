@@ -1,4 +1,4 @@
-import {Component, ElementRef, Input, OnInit, ViewChild} from '@angular/core';
+import {Component, ElementRef, EventEmitter, Input, OnInit, Output, ViewChild} from '@angular/core';
 
 @Component({
   selector: 'app-range-input',
@@ -8,6 +8,7 @@ import {Component, ElementRef, Input, OnInit, ViewChild} from '@angular/core';
 export class RangeInputComponent implements OnInit {
   @ViewChild('cursor', null) cursor: ElementRef;
   @ViewChild('box', null) box: ElementRef;
+  @Output('value') onValue = new EventEmitter();
   active: boolean = false;
 
   @Input('type') type: 'range' | 'select' = 'select';
@@ -82,7 +83,9 @@ export class RangeInputComponent implements OnInit {
   }
 
   startPoint: number;
+  startValue: any;
   startMove(e) {
+    this.startValue = this.value;
     this.active = true;
     e.stopPropagation();
     e.preventDefault();
@@ -95,5 +98,7 @@ export class RangeInputComponent implements OnInit {
   }
   endMove(e) {
     this.active = false;
+    if (this.value != this.startValue)
+      this.onValue.emit(this.value);
   }
 }
