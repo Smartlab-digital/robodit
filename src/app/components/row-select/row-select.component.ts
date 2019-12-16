@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 
 @Component({
   selector: 'app-row-select',
@@ -14,10 +14,15 @@ export class RowSelectComponent implements OnInit {
     '12 Ч',
     'День'
   ];
+  @Output('selected') selectedEvent = new EventEmitter();
   selected: number = 0;
 
   constructor() { }
 
   ngOnInit() {}
 
+  setSelected(index) {
+    this.selected = index;
+    this.selectedEvent.emit(this.options[index]);
+  }
 }

@@ -6,16 +6,36 @@ import {Component, ElementRef, Input, OnInit, ViewChild} from '@angular/core';
   styleUrls: ['./service-level-card.component.scss'],
 })
 export class ServiceLevelCardComponent implements OnInit {
-  @ViewChild('mainChart', null) mainChart: ElementRef;
+  @ViewChild('mainChart', { static: false }) mainChart: ElementRef;
   @Input('red-fill') fill: 'border' | 'background' = null;
   mode: 'full' | 'min' = 'min';
   @Input('chart_preview') chart_preview = false;
 
   constructor() { }
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.generateRandomChart();
+  }
 
-  data = [3, 5, 2, 5,6, 7, 9, 8, 4, 5, 3, 5, 7, 3,  6, 7, 9, 8, 4, 5, 3, 5, 2, 4, 5, 2];
+  get chartWidth() {
+    return (this.mainChart && this.mainChart.nativeElement && this.mainChart.nativeElement.clientWidth) || 200;
+  }
+
+  data: any;
+  generateRandomChart() {
+    const length = 26; //Math.ceil(10 + 10 * Math.random());
+    const minValue = Math.floor(20 * Math.random());
+    const maxValue = Math.ceil(21 + 50 * Math.random());
+
+    const data = [];
+
+    for (let i = 0; i < length; i++) {
+      data.push(minValue + Math.ceil(maxValue * Math.random()));
+    }
+
+    this.data = data;
+    this.redValueAfter =  maxValue / 1.75;
+  }
 
   get dataset() {
     return [{
@@ -28,12 +48,12 @@ export class ServiceLevelCardComponent implements OnInit {
     return [{
       data: this.data,
       //(this.mainChart.nativeElement.clientWidth - 50)
-      barThickness: Math.ceil(200 / this.data.length - 4),
+      barThickness: Math.ceil(this.chartWidth / this.data.length - 2),
       borderWidth: 0
     }];
   }
 
-  redValueAfter: number = 5;
+  redValueAfter: number;
   get mainColors() {
     const colors = [];
     for (let v of this.data) {

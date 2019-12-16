@@ -2,7 +2,7 @@
   <div class="option"
        [ngClass]="{ selected: selected == i }"
        *ngFor="let opt of options; let i = index"
-       (click)="selected = i"
+       (click)="setSelected(i)"
   >
     <div class="text">
       {{ opt }}

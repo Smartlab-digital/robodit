@@ -8,12 +8,14 @@
   height: 0;
 
   .label{
+    transition: 0.6s top ease, 0.6s left ease;
     position: relative;
     @include font();
     font-size: 10px;
-    @include flex(row, center, center);
-    width: 0px;
-    height: 0px;
+    @include flex(row, flex-end, center);
     color: white;
+
+    width: 1px;
+    height: 1px;
   }
 }
