@@ -9,18 +9,19 @@ import {NgChartjsModule} from "ng-chartjs";
 import {RowSelectComponent} from "./row-select/row-select.component";
 import {RangeInputComponent} from "./range-input/range-input.component";
 import {LineChartComponent} from "./line-chart/line-chart.component";
+import {SearchInputComponent} from "./search-input/search-input.component";
 
 
 
 @NgModule({
-  declarations: [HeaderComponent, LoginScreenComponent, ServiceLevelCardComponent, RowSelectComponent, RangeInputComponent, LineChartComponent],
+  declarations: [HeaderComponent, LoginScreenComponent, ServiceLevelCardComponent, RowSelectComponent, RangeInputComponent, LineChartComponent, SearchInputComponent],
   imports: [
     CommonModule,
     IonicModule,
     NgChartjsModule
   ],
   exports: [
-    HeaderComponent, LoginScreenComponent, ServiceLevelCardComponent,  RowSelectComponent, RangeInputComponent, LineChartComponent
+    HeaderComponent, LoginScreenComponent, ServiceLevelCardComponent, RowSelectComponent, RangeInputComponent, LineChartComponent, SearchInputComponent
   ]
 })
 export class ComponentsModule { }
