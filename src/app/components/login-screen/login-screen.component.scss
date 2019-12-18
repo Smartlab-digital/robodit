@@ -4,6 +4,18 @@
   justify-content: center;
   align-items: center;
 
+  margin-top: 0vh;
+  transition: 0.7s all ease;
+  overflow: scroll;
+
+
+
+  &.hide{
+    transition: 0.7s all ease;
+    margin-top: -100vh;
+    overflow: scroll;
+  }
+
   width: 100%;
   height: calc(100%);
   background: var(--color-main-gray-background);
@@ -26,4 +38,56 @@
 
 .two{
   background: red;
+}
+
+
+
+.animation{
+  &:not(.trigger){
+    animation-name: agree;
+    animation-duration: 0.2s;
+    animation-iteration-count: 1;
+    animation-timing-function: cubic-bezier(0, 0, 1, 1);
+  }
+
+  &.trigger{
+    animation-name: agree2;
+    animation-duration: 0.2s;
+    animation-iteration-count: 1;
+    animation-timing-function: cubic-bezier(0, 0, 1, 1);
+  }
+}
+
+@keyframes agree {
+  0% {
+    transform: translateX(5px);
+    animation-timing-function: ease-in;
+  }
+  40% {
+    transform: translateX(-5px);
+    animation-timing-function: ease-in;
+  }
+  80% {
+    transform: translateX(3px);
+    animation-timing-function: ease-in;
+  }
+  100% {
+    transform: translateX(3px);
+    animation-timing-function: ease-in;
+  }
+}
+
+@keyframes agree2 {
+  0% {
+    transform: translateX(5px);
+  }
+  40% {
+    transform: translateX(-5px);
+  }
+  80% {
+    transform: translateX(3px);
+  }
+  100% {
+    transform: translateX(3px);
+  }
 }

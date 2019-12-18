@@ -1,4 +1,5 @@
 .input{
+  transition: 0.14s all ease;
   height: var(--height);
   --padding-start: var(--height);
   --padding-top: 15px;
@@ -10,11 +11,17 @@
   font-size: 14px;
   --font-size: 14px;
   line-height: 20px;
+  border: 1px solid #0000;
 
   color: #A3A3AC;
 
   &.light{
     --background: var(--color-light-gray-background);
+  }
+
+  &.invalid, &.ng-invalid{
+    transition: 0.14s all ease;
+    border-color: red;
   }
 }
 
@@ -38,10 +45,12 @@
     border-bottom: 1px solid rgba(255, 255, 255, 0.1);
     height: 52px;
 
-    background: linear-gradient(to right, #37363E 0%, #37363E var(--progress), #00000000 var(--progress), #00000000 100%);;
+    --active-zone: #37363E;
+    //background: linear-gradient(to right, #37363E 0%, #37363E var(--progress), #00000000 var(--progress), #00000000 100%);;
 
     &.active{
-      background: linear-gradient(to right, #51505B 0%, #51505B var(--progress), #00000000 var(--progress), #00000000 100%);;
+      --active-zone: #51505B;
+      //background: linear-gradient(to right, #51505B 0%, #51505B var(--progress), #00000000 var(--progress), #00000000 100%);;
     }
 
     &:last-child{

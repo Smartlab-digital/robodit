@@ -20,58 +20,102 @@ export class LineChartComponent implements OnInit {
     return (this.chartEl && this.chartEl.nativeElement.clientHeight) || 0;
   }
 
-  data  = [3, 5, 2, 5, 6, 7, 9, 8, 4, 5, 3, 5, 7, 3, 2];
-  data2 = [7, 3, 6, 7, 9, 7, 2, 1, 4, 5, 2, 4, 5, 8, 1];
-
+  length: number = 0;
+  zeroData: number[] = [];
   generateRandomChart() {
     const length = 20; //Math.ceil(10 + 10 * Math.random());
     const minValue = Math.floor(50 * Math.random());
     const maxValue = Math.ceil(50 + 100 * Math.random());
 
-    const data1 = [];
-    const data2 = [];
-
-    for (let i = 0; i < length; i++) {
-      data1.push(minValue + Math.ceil(maxValue * Math.random()));
-      data2.push(minValue + Math.ceil(maxValue * Math.random()));
+    for (let line of this.lines) {
+      line.data = [];
     }
 
-    this.data = data1;
-    this.data2 = data2;
+    this.zeroData = [];
+    for (let i = 0; i < length; i++) {
+      for (let line of this.lines) {
+        line.data.push(minValue + Math.ceil(maxValue * Math.random()));
+        this.zeroData.push(0);
+      }
+    }
 
-    // for animation need update index value, not all value
-    this.chartLabels[0].i = Math.floor(length * Math.random());
-    this.chartLabels[1].i = Math.floor(length * Math.random());
+    this.length = length;
 
     setTimeout( () => {
       (this._chart as any).refresh();
     })
   }
 
-  chartLabels = [
+  lines = [
     {
-      text: '40%',
-      i: 0
+      progress: 90,
+      text: 'Mauris maximus sapien sit amet erat luctus laoreet. Sed consequat lacinia urna, vitae.',
+      value: '10 000',
+      data: [],
+      show: true,
+      label: true
     },
     {
-      text: '70%',
-      i: 19
+      progress: 70,
+      text: 'Mauris maximus sapien sit amet erat luctus laoreet. Sed consequat lacinia urna, vitae.',
+      value: '10 000',
+      data: [],
+      show: false,
+      label: true
+    },
+    {
+      progress: 50,
+      text: 'Mauris maximus sapien sit amet erat luctus laoreet. Sed consequat lacinia urna, vitae.',
+      value: '10 000',
+      data: [],
+      show: true,
+      label: true
+    },
+    {
+      progress: 30,
+      text: 'Mauris maximus sapien sit amet erat luctus laoreet. Sed consequat lacinia urna, vitae.',
+      value: '10 000',
+      data: [],
+      show: false,
+      label: true
     }
   ];
 
   get dataset() {
-    return [{
-      data: this.data,
-      fill: true,
-      pointRadius: 0
-    }, {
-      data: this.data2,
-      fill: true,
-      pointRadius: 0
-    }];
+    const renderLines = [];
+
+    for (let line of this.lines) {
+      if (line.show) {
+        renderLines.push({
+          data: line.data,
+          pointRadius: 0
+        });
+      } else {
+        renderLines.push(
+          {
+            data: this.zeroData,
+            pointRadius: 0
+          }
+        );
+      }
+    }
+
+    return renderLines;
+  }
+  getGradient(v) {
+    return `linear-gradient(to right, var(--active-zone) 0%, var(--active-zone) ${v}%, rgba(0,0,0,0) ${v}%, rgba(0,0,0,0) 100%)`
   }
 
+  /*   Length must by > or = lines array length  */
   colours = [{
+    backgroundColor: 'rgba(128, 159, 255, 0.11)',
+    borderColor: 'rgba(128, 159, 255, 0.6)',
+    borderWidth: 1
+  }, {
+    backgroundColor: 'rgba(128, 159, 255, 0.11)',
+    borderColor: 'rgba(128, 159, 255, 0.6)',
+    borderWidth: 1
+  },{
     backgroundColor: 'rgba(128, 159, 255, 0.11)',
     borderColor: 'rgba(128, 159, 255, 0.6)',
     borderWidth: 1
@@ -84,7 +128,12 @@ export class LineChartComponent implements OnInit {
   labels = ['00', '06', '12', '16', '24'];
 
   get maxValue() {
-    return Math.max(Math.max.apply(Math, this.data), Math.max.apply(Math, this.data2));
+    return Math.max.apply(
+      Math,
+      this.lines.map((line) => {
+        return Math.max.apply(Math, line.data);
+      })
+    );
   }
   get topYLabel() {
     const variants = [10, 20, 30 , 40, 50, 60, 70, 80, 90, 100, 150];
@@ -165,4 +214,11 @@ export class LineChartComponent implements OnInit {
     };
   };
 
+
+  getIndexOffset(offset, distance, {margin} = {margin: 2}) {
+
+
+
+    return Math.round((this.length - margin * 2) * (offset / distance)) + margin;
+  }
 }

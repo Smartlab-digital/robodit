@@ -11,19 +11,21 @@
           #chart
           height="162" width="380"
           ngChartjs [datasets]="dataset"
-          [labels]="' '.repeat(data.length).split('')"
+          [labels]="' '.repeat(length).split('')"
           [options]="options" [colors]="colours" chartType="line"
          ></canvas>
         <div class="chart-labels">
           <div
-              *ngFor="let item of chartLabels"
+              *ngFor="let item of lines; let i = index"
               [ngStyle]="{
-                top: '-' + ((chartHeight - 30) * (data[item.i] / topYLabel) + 33) + 'px',
-                left: 'calc( 5px + (100% - 5px) *' + item.i / (data.length - 1) + ')'
+                top: '-' + ((chartHeight - 30) * (lines[i].data[getIndexOffset(i, lines.length  - 1, { margin: 4})] / topYLabel) + 33) + 'px',
+                left: 'calc((100%) *' + getIndexOffset(i, lines.length  - 1, { margin: 4}) / length + ')'
               }"
-              class="label"
+              [ngClass]="{ label: true, hide: !(item.show && item.label) }"
           >
-            {{ item.text }}
+            <div>
+              {{ item.progress }}%
+            </div>
           </div>
         </div>
         <div class="labels row justify-between">
@@ -53,71 +55,26 @@
     </div>
 
     <div class="column legends">
-      <div class="legend row" style="--progress: 90%">
+      <div class="legend row"
+           [ngClass]="{ active: line.show }"
+           [ngStyle]="{ background: getGradient(line.progress) }"
+           *ngFor="let line of lines"
+           (click)="line.show = !line.show"
+      >
         <div class="progress">
-          90%
+          {{ line.progress }}%
         </div>
         <div class="hr"></div>
         <div class="description">
-          Mauris maximus sapien sit amet erat luctus laoreet.
-          Sed consequat lacinia urna, vitae.
+          {{ line.text }}
         </div>
         <div class="hr">
 
         </div>
         <div class="value">
-          10 000
-        </div>
-      </div>
-      <div class="legend active row" style="--progress: 70%">
-        <div class="progress">
-          70%
-        </div>
-        <div class="hr"></div>
-        <div class="description">
-          Mauris maximus sapien sit amet erat luctus laoreet.
-          Sed consequat lacinia urna, vitae.
-        </div>
-        <div class="hr">
-
-        </div>
-        <div class="value">
-          10 000
-        </div>
-      </div>
-      <div class="legend row" style="--progress: 50%">
-        <div class="progress">
-          50%
-        </div>
-        <div class="hr"></div>
-        <div class="description">
-          Mauris maximus sapien sit amet erat luctus laoreet.
-          Sed consequat lacinia urna, vitae.
-        </div>
-        <div class="hr">
-
-        </div>
-        <div class="value">
-          10 000
-        </div>
-      </div>
-      <div class="legend active row" style="--progress: 30%">
-        <div class="progress">
-          30%
-        </div>
-        <div class="hr"></div>
-        <div class="description">
-          Mauris maximus sapien sit amet erat luctus laoreet.
-          Sed consequat lacinia urna, vitae.
-        </div>
-        <div class="hr">
-
-        </div>
-        <div class="value">
-          10 000
+          {{ line.value }}
         </div>
       </div>
     </div>
-
   </div>
 </div>

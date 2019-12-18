@@ -11,4 +11,19 @@ export class LoginScreenComponent implements OnInit {
 
   ngOnInit() {}
 
+  show:boolean = true;
+  animationTrigger: boolean = true;
+  animation: number = 0;
+
+
+  next () {
+    this.animation++;
+
+    if (this.animation > 3) {
+      this.show = false;
+    } else {
+      this.animationTrigger = !this.animationTrigger;
+    }
+  }
+
 }

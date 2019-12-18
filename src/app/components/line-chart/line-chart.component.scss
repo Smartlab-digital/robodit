@@ -15,7 +15,13 @@
     @include flex(row, flex-end, center);
     color: white;
 
-    width: 1px;
+    width: min-content;
     height: 1px;
+
+    &.hide{
+      transition: 0.6s all ease;
+      top: 58px !important;
+      opacity: 0;
+    }
   }
 }
