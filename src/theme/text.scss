@@ -1,9 +1,10 @@
 .header{
-  margin: 14px 0;
+  margin: 14px 0 12px 0;
 
   @include font();
-  font-size: 18px;
+  font-size: 16px;
   line-height: 21px;
+
 
 
   color: #FFFFFF;
@@ -19,6 +20,7 @@
 h1.header{
   font-size: 36px;
   line-height: 42px;
+  margin: 14px 0;
   margin-top: 24px;
 
   & ~ .icon{
@@ -28,20 +30,24 @@ h1.header{
 h1.header.small{
   font-size: 30px;
   line-height: 35px;
+  margin: 14px 0;
 }
 h2.header{
   font-size: 24px;
   line-height: 28px;
+  margin: 14px 0;
 }
 h3.header{
   font-size: 18px;
+  margin: 14px 0;
 }
 h4.header{
   font-size: 14px;
+  margin: 14px 0;
   margin-right: 10px !important;
 }
 h6.header{
   font-size: 10px;
   line-height: 12px;
-  margin-bottom: 8px;
+  margin: 14px 0 8px 0;
 }

@@ -23,6 +23,11 @@
     transition: 0.14s all ease;
     border-color: red;
   }
+
+  &.small{
+    --height: 42px;
+    --padding-start: 15px;
+  }
 }
 
 .icon{

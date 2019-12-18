@@ -11,11 +11,12 @@ import {RangeInputComponent} from "./range-input/range-input.component";
 import {LineChartComponent} from "./line-chart/line-chart.component";
 import {SearchInputComponent} from "./search-input/search-input.component";
 import {FormsModule} from "@angular/forms";
+import {ModalEditorComponent} from "./modal-editor/modal-editor.component";
 
 
 
 @NgModule({
-  declarations: [HeaderComponent, LoginScreenComponent, ServiceLevelCardComponent, RowSelectComponent, RangeInputComponent, LineChartComponent, SearchInputComponent],
+  declarations: [HeaderComponent, LoginScreenComponent, ServiceLevelCardComponent, RowSelectComponent, RangeInputComponent, LineChartComponent, SearchInputComponent, ModalEditorComponent],
   imports: [
     CommonModule,
     IonicModule,
@@ -23,7 +24,7 @@ import {FormsModule} from "@angular/forms";
     FormsModule
   ],
   exports: [
-    HeaderComponent, LoginScreenComponent, ServiceLevelCardComponent, RowSelectComponent, RangeInputComponent, LineChartComponent, SearchInputComponent
+    HeaderComponent, LoginScreenComponent, ServiceLevelCardComponent, RowSelectComponent, RangeInputComponent, LineChartComponent, SearchInputComponent, ModalEditorComponent
   ]
 })
 export class ComponentsModule { }
