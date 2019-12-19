@@ -2,9 +2,11 @@
 
 .app-row-select{
   padding: 2px 2px 2px 3px;
+  margin-bottom: 1px;
   background-color: var(--color-over-white-light);
 
   .option{
+    padding-left: 1px;
     @include flex(row, center, center);
     height: 30px;
     width: 100%;
@@ -12,7 +14,7 @@
     color: white;
     text-align: center;
 
-    &:not(:last-child):not(.selected){
+    &:not(:last-child){
       &:after{
         display: block;
         content: '';
@@ -30,8 +32,32 @@
     }
 
     &.selected{
-      margin-left: -1px;
+      //box-sizing: border-box;
+      //margin-left: -1px;
+      //border-left: 1px solid var(--color-over-white-light);
+      //border-right: 1px solid var(--color-over-white-light);
       background-color: var(--color-main-gray-background);
+    }
+  }
+
+  &.multi-rows{
+    flex-wrap: wrap;
+
+    .option{
+      width: 25%;
+    }
+  }
+
+  &.colors-schema-dark{
+    background-color: var(--color-main-gray-background);
+
+    .option{
+      background-color: var(--color-main-gray-background);
+
+      &.selected{
+        background-color: var(--color-over-white-light);
+        //border-left: 1px solid var(--color-over-white-light);
+      }
     }
   }
 }

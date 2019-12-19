@@ -1,11 +1,14 @@
-<div class="app-row-select row">
+<div class="app-row-select justify-start row"
+     *ngFor="let list of lists; let listI = index"
+     [ngClass]="[ ('multi-rows' == mode)?'multi-rows':'', 'colors-schema-' + colorsSchema]">
   <div class="option"
-       [ngClass]="{ selected: selected == i }"
-       *ngFor="let opt of options; let i = index"
-       (click)="setSelected(i)"
+       [ngClass]="{ selected: selected == ( 4 * listI + i) }"
+       *ngFor="let opt of list; let i = index"
+       (click)="setSelected(( 4 * listI + i))"
   >
     <div class="text">
       {{ opt }}
     </div>
   </div>
 </div>
+

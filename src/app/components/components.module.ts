@@ -12,11 +12,12 @@ import {LineChartComponent} from "./line-chart/line-chart.component";
 import {SearchInputComponent} from "./search-input/search-input.component";
 import {FormsModule} from "@angular/forms";
 import {ModalEditorComponent} from "./modal-editor/modal-editor.component";
+import {CheckBoxComponent} from "./check-box/check-box.component";
 
 
 
 @NgModule({
-  declarations: [HeaderComponent, LoginScreenComponent, ServiceLevelCardComponent, RowSelectComponent, RangeInputComponent, LineChartComponent, SearchInputComponent, ModalEditorComponent],
+  declarations: [HeaderComponent, LoginScreenComponent, ServiceLevelCardComponent, RowSelectComponent, RangeInputComponent, LineChartComponent, SearchInputComponent, ModalEditorComponent, CheckBoxComponent],
   imports: [
     CommonModule,
     IonicModule,

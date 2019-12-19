@@ -31,6 +31,16 @@
   &.justify-end{
     justify-content: flex-end;
   }
+
+  &.children-full-width{
+    & > *{
+      width: 100%;
+
+      &.row{
+        padding: 0 16px;
+      }
+    }
+  }
 }
 
 .input-block{
@@ -38,6 +48,16 @@
   display: flex;
   flex-direction: column;
   margin-bottom: 11px;
+
+  &.hide-left-btn{
+    .left-icon{
+      display: none !important;
+    }
+
+    .input{
+      --padding-start: 16px;
+    }
+  }
 
   .right-icon, .left-icon{
     position: relative;
@@ -192,6 +212,8 @@
       margin-left: 22px !important;
       margin-top: -32px !important;
       padding-top: 5px;
+      padding-bottom: 18px;
+      margin-bottom: -18px !important;
       position: relative;
       z-index: 20;
       background: #2b2a30;
@@ -210,9 +232,9 @@
 
 
 .modal-box{
-  @include flex(row, center, center);
 
   box-sizing: border-box;
+  overflow: scroll;
   position: fixed;
   z-index:  2000;
   top: 0;
@@ -225,9 +247,9 @@
   background: rgba(43, 42, 48, 0.9);
 
   .modal{
+    overflow-y: auto;
     width: 100%;
     height: fit-content;
-    max-height: 100%;
     padding: 20px;
     box-sizing: border-box;
     position: relative;

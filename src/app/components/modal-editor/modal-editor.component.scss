@@ -1,0 +1,74 @@
+@import "../../../theme/lib";
+
+.items-group{
+  @include flex(column);
+  padding: 10px 16px;
+  background-color: var(--color-main-gray-background);
+
+  &.zero-padding{
+    padding: 0px;
+
+    & > .row{
+      padding: 0 16px;
+    }
+  }
+
+  .zero-item{
+    height: 20px;
+    width: 100%;
+  }
+
+  & > *:not(:last-child){
+    border-bottom: 1px solid #37363E;
+  }
+}
+
+.input.light{
+  --background: #2B2A30;
+  --height: 15px;
+  margin-top: 6px;
+}
+
+
+.btn{
+  height: 40px;
+  width: 100%;
+  margin: 10px 0;
+  --box-shadow: none;
+  font-size: 12px;
+
+  --background: var(--btn-color);
+  --background-active: var(--btn-color);
+  --background-focused: var(--btn-color);
+  --background-hover: var(--btn-color);
+  --background-activated: var(--btn-color);
+
+  &:not(:last-child){
+    margin-right: 8px;
+  }
+
+  &.red{
+    --btn-color: var(--color-main-red);
+  }
+  &.green{
+    --btn-color: var(--color-main-green);
+  }
+  &.dark-gray{
+    --btn-color: var(--color-main-gray-background);
+  }
+  &.light-gray{
+    --border-width: 1px !important;
+    --border-color: var(--color-light-gray-background);
+    --border-style: solid;
+  }
+}
+
+.btn-group{
+  min-width: min-content;
+  margin-right: 8px;
+  width: 100%;
+
+  .btn{
+    margin-right: 0px !important;
+  }
+}
