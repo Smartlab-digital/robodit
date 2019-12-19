@@ -266,3 +266,43 @@
   right: 0;
   bottom: 0;
 }
+
+
+.result-list{
+  width: 100%;
+  height: 0px;
+
+  .item{
+    @include flex(row, center, flex-start);
+    @include font();
+    height: 50px;
+    padding: 0 30px;
+    background-color: var(--color-over-white-light);
+
+    border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+
+    font-size: 12px;
+    color: #FFFFFF;
+
+    position: relative;
+    z-index: 25;
+
+    &:last-child{
+      border-bottom: none;
+    }
+  }
+
+  .shadow{
+    position: relative;
+    box-shadow: 0px 10px 10px rgba(34, 33, 39, 0.56);
+  }
+}
+
+.reverse-icon{
+  transform: rotateX(0deg);
+  transition: 0.12s all ease;
+
+  &.reverse{
+    transform: rotateX(180deg);
+  }
+}
