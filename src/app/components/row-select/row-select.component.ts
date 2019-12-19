@@ -46,8 +46,8 @@ export class RowSelectComponent implements OnInit {
   ngOnInit() {}
 
   setSelected(list, index) {
-    console.log(222);
-    this.selected = index;
+    const value = 4 * list + index;
+    this.selected = value;
     this.selectedEvent.emit(this.lists[list][index]);
   }
 }

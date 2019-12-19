@@ -20,6 +20,9 @@
     font-size: 12px;
     color: #FFFFFF;
 
+    position: relative;
+    z-index: 25;
+
     &:last-child{
       border-bottom: none;
     }
