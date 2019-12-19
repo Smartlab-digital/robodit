@@ -1,8 +1,43 @@
+@import '../../../theme/lib';
+
 .modal.calendar{
   padding: 6px;
 
   .group{
-    padding: 10px 16px;
+    padding: 10px 16px 5px 16px;
+    background: #2B2A30;
+    border-radius: 6px;
+    margin-bottom: 7px;
 
+    hr{
+      border-width: 0;
+      box-sizing: content-box;
+      background: rgba(255, 255, 255, 0.04);
+      border-radius: 6px;
+      margin: 8px 0;
+    }
+  }
+
+  .calendar-table{
+    width:  100%;
+
+    tr{
+      margin-bottom: 3px;
+      align-items: center;
+      text-align: center;
+    }
+
+    th, td{
+      height: 22px;
+      padding: 0;
+      border-width: 0;
+
+      @include font(Montserrat);
+      font-size: 10px;
+      color: #BDBDBD;
+    }
+    th{
+
+    }
   }
 }

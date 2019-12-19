@@ -6,17 +6,17 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./data-picker.component.scss'],
 })
 export class DataPickerComponent implements OnInit {
-  _show: boolean  = false;
-
-  constructor(
-
-  ) { }
+  _show: boolean  = true;
+  constructor() { }
 
   ngOnInit() {}
 
 
   show() {
     this._show = true;
+  }
+  hide() {
+    this._show = false;
   }
 }
 
