@@ -8,6 +8,11 @@
   transition: 0.7s all ease;
   overflow: scroll;
 
+  .logo{
+    max-width: 100%;
+    width: auto;
+    height: auto;
+  }
 
 
   &.hide{

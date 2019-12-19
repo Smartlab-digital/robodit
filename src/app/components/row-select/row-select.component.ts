@@ -8,9 +8,17 @@ import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 export class RowSelectComponent implements OnInit {
   @Input('mode') mode: 'normal' | 'multi-rows';
   @Input('colors-schema') colorsSchema: string = 'light';
-  lists: any = [];
+  lists: any = [[
+    '30 М',
+    '1 Ч',
+    '3 Ч',
+    '6 Ч',
+    '12 Ч',
+    'День'
+  ]];
   @Input('options')
   set options(options) {
+
     if (this.mode == 'multi-rows') {
       const result = [];
 
@@ -37,8 +45,9 @@ export class RowSelectComponent implements OnInit {
 
   ngOnInit() {}
 
-  setSelected(index) {
+  setSelected(list, index) {
+    console.log(222);
     this.selected = index;
-    this.selectedEvent.emit(this.options[index]);
+    this.selectedEvent.emit(this.lists[list][index]);
   }
 }

@@ -26,6 +26,7 @@
 .input.light{
   --background: #2B2A30;
   --height: 15px;
+  min-height: 32px;
   margin-top: 6px;
 }
 
@@ -36,6 +37,7 @@
   margin: 10px 0;
   --box-shadow: none;
   font-size: 12px;
+  text-transform: none;
 
   --background: var(--btn-color);
   --background-active: var(--btn-color);
