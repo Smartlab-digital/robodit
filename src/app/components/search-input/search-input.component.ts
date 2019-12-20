@@ -16,7 +16,7 @@ export class SearchInputComponent implements OnInit {
     this._show = value;
 
     setTimeout(() => {
-      window.scrollTo(1, 1);
+      document.getElementById('content').scrollBy(1, 1);
     });
   }
 
