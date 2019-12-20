@@ -62,9 +62,13 @@ export class ServiceLevelCardComponent implements OnInit {
     this.refresh();
   }
   refresh() {
-    setTimeout( () => {
-      if (!this._chart) return;
-      (this._chart as any).refresh();
+    window.requestAnimationFrame(() => {
+      window.requestAnimationFrame(() => {
+        window.requestAnimationFrame(() => {
+          if (!this._chart) return;
+          (this._chart as any).refresh();
+        });
+      });
     });
   }
 
@@ -76,6 +80,7 @@ export class ServiceLevelCardComponent implements OnInit {
     }];
   }
   get main_dataset() {
+    console.log(222);
     const width = Math.ceil((this.chartWidth - 40) / this.data.length - 6) ;
 
     return [{
