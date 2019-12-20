@@ -131,16 +131,25 @@
   }
 
   .canvas-block{
-    @include flex(row, flex-end, flex-end);
     width: 200px;
     padding-right: 10px;
     margin-left: auto;
     margin-top: auto;
     height: 30px;
 
+    min-height: 30px;
+    min-width: 200px;
+    max-height: 30px;
+    max-width: 200px;
+
     canvas{
       height: 30px;
       width: 200px;
+
+      min-height: 30px;
+      min-width: 200px;
+      max-height: 30px;
+      max-width: 200px;
     }
   }
 }
