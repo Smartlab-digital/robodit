@@ -63,13 +63,7 @@
     position: relative;
     z-index: 15;
 
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
-    box-sizing: border-box;
-    height: var(--height);
-    width: var(--height);
+    padding: 9px 10px;
   }
   .left-icon{
     padding-left: 10px;

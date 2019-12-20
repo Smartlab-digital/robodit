@@ -31,6 +31,8 @@
 }
 
 .icon{
+  position: relative;
+  z-index: 13;
   margin: 10px;
 
   &:last-child{
