@@ -67,7 +67,7 @@
       <h2 class="header">
         150
       </h2>
-      <div class="canvas-block">
+      <div class="canvas-block" *ngIf="false">
         <canvas width="200px" height="30px" ngChartjs [datasets]="dataset"
                 [labels]="' '.repeat(data.length - 1).split('')"
                 [options]="options" [colors]="colours" chartType="bar"

@@ -304,6 +304,6 @@
   transition: 0.12s all ease;
 
   &.reverse{
-    transform: rotateX(180deg);
+    transform: scaleY(-1);
   }
 }

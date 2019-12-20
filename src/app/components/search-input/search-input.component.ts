@@ -14,7 +14,7 @@ export class SearchInputComponent implements OnInit {
   }
   set show(value:boolean) {
     this._show = value;
-
+/*
     setTimeout(() => {
       const doc = document.getElementById('content');
 
@@ -29,7 +29,7 @@ export class SearchInputComponent implements OnInit {
           doc.style.paddingBottom = '0px';
         }
       })
-    });
+    });*/
   }
 
   constructor() { }
