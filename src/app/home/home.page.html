@@ -3,7 +3,7 @@
 <ion-content mode="md" >
   <app-login-screen></app-login-screen>
 
-  <div class="content"  id="content">
+  <div class="content"  >
     <div class="row">
       <h1 class="row header" style="margin-right: auto"  (click)="show = !show">
         Статистика
@@ -60,5 +60,6 @@
       <app-service-level-card [chart_preview]="true" red-fill="background"></app-service-level-card>
     </div>
     <app-line-chart class="full"></app-line-chart>
+    <div class="row full-width" id="content"></div>
   </div>
 </ion-content>

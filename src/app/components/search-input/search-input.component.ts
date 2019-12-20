@@ -20,11 +20,13 @@ export class SearchInputComponent implements OnInit {
 
       let i = 0;
       window.requestAnimationFrame( function rep() {
-        doc.scrollLeft += i % 3 - 1;
+        doc.style.paddingBottom = i % 19  + 'px';
         console.log(i++);
 
         if (i < 10) {
           window.requestAnimationFrame(rep);
+        } else {
+          doc.style.paddingBottom = '0px';
         }
       })
     });
