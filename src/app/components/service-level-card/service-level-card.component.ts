@@ -30,7 +30,7 @@ export class ServiceLevelCardComponent implements OnInit {
   }
 
   get chartWidth() {
-    return (this.mainChart && this.mainChart.nativeElement && this.mainChart.nativeElement.clientWidth) || 200;
+    return (this.mainChart && this.mainChart.nativeElement && this.mainChart.nativeElement.clientWidth) || 0;
   }
 
   data: any;
@@ -61,14 +61,14 @@ export class ServiceLevelCardComponent implements OnInit {
 
     this.refresh();
   }
-  refresh() {
+  refresh(i = 0) {
     window.requestAnimationFrame(() => {
-      window.requestAnimationFrame(() => {
-        window.requestAnimationFrame(() => {
-          if (!this._chart) return;
-          (this._chart as any).refresh();
-        });
-      });
+      if (i > 10) return;
+
+      console.log(i);
+
+      if (!this._chart || !this.chartWidth) return this.refresh(i + 1);
+      return (this._chart as any).refresh();
     });
   }
 
@@ -80,8 +80,7 @@ export class ServiceLevelCardComponent implements OnInit {
     }];
   }
   get main_dataset() {
-    console.log(222);
-    const width = Math.ceil((this.chartWidth - 40) / this.data.length - 6) ;
+    const width = (this.chartWidth)? Math.ceil((this.chartWidth - 40) / this.data.length - 6): 0;
 
     return [{
       data: this.data,
