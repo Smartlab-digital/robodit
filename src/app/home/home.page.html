@@ -25,7 +25,8 @@
           </defs>
         </svg>
       </div>
-      <div class="icon">
+      <app-data-picker #dataPicker></app-data-picker>
+      <div class="icon" (click)="dataPicker.show()">
         <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
           <path d="M20 9.04762H10.9524V0H9.04762V9.04762H0V10.9524H9.04762V20H10.9524V10.9524H20V9.04762Z" fill="#A3A3AC"/>
         </svg>

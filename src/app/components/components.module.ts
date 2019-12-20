@@ -26,7 +26,7 @@ import {DataPickerComponent} from "./data-picker/data-picker.component";
     FormsModule
   ],
   exports: [
-    HeaderComponent, LoginScreenComponent, ServiceLevelCardComponent, RowSelectComponent, RangeInputComponent, LineChartComponent, SearchInputComponent, ModalEditorComponent
+    HeaderComponent, LoginScreenComponent, ServiceLevelCardComponent, RowSelectComponent, RangeInputComponent, LineChartComponent, SearchInputComponent, ModalEditorComponent, DataPickerComponent
   ]
 })
 export class ComponentsModule { }

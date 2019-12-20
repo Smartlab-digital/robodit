@@ -20,24 +20,54 @@
 
   .calendar-table{
     width:  100%;
+    @include font(Montserrat);
+    font-size: 10px;
+    color: #BDBDBD;
 
     tr{
       margin-bottom: 3px;
       align-items: center;
       text-align: center;
+
+      border-bottom: 3px solid rgb(43, 42, 48);
     }
 
     th, td{
-      height: 22px;
+      height: 25px;
       padding: 0;
       border-width: 0;
-
-      @include font(Montserrat);
-      font-size: 10px;
-      color: #BDBDBD;
+    }
+    tr{
+      margin-bottom: 2px;
+    }
+    td{
+      &.active{
+        background: #37363E;
+      }
+      &.focus{
+        background: #545A62;
+      }
     }
     th{
-
+      height: min-content;
+      padding-top: 5px;
+    }
+    caption{
+      height: 16px;
     }
   }
+}
+
+
+.time-input{
+  --height: 22px;
+  width: 56px;
+  --padding-start: 0px;
+  --padding-end: 0px;
+  text-align: center;
+  font-size: 11px;
+}
+
+h6.aling-margin{
+  margin: 0 6px 0 10px;
 }

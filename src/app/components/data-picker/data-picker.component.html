@@ -14,7 +14,7 @@
       <hr>
 
       <table class="calendar-table">
-        <caption>Calendar</caption>
+        <caption>октябрь 2019</caption>
         <tr>
           <th>ПН</th>
           <th>ВТ</th>
@@ -40,20 +40,20 @@
           <td>7</td>
           <td>8</td>
           <td>9</td>
-          <td>10</td>
+          <td class="active">10</td>
         </tr>
         <tr>
-          <td>11</td>
-          <td>12</td>
-          <td>13</td>
-          <td>14</td>
-          <td>15</td>
+          <td class="active">11</td>
+          <td class="active">12</td>
+          <td class="active">13</td>
+          <td class="active">14</td>
+          <td class="active">15</td>
           <td>16</td>
           <td>17</td>
         </tr>
         <tr>
           <td>18</td>
-          <td>19</td>
+          <td class="focus">19</td>
           <td>20</td>
           <td>21</td>
           <td>22</td>
@@ -70,6 +70,16 @@
           <td>30</td>
         </tr>
       </table>
+    </div>
+    <div class="group full-width row justify-between" style="padding-bottom: 10px">
+      <h5 class="header">Временной промежуток:</h5>
+
+      <div class="row">
+        <h6 class="header aling-margin">c</h6>
+        <ion-input [readonly]="true" value="08:00" class="input time-input"></ion-input>
+        <h6 class="header aling-margin">c</h6>
+        <ion-input [readonly]="true" value="12:30" class="input time-input"></ion-input>
+      </div>
     </div>
   </div>
 </div>
