@@ -20,10 +20,10 @@ export class SearchInputComponent implements OnInit {
 
       let i = 0;
       window.requestAnimationFrame( function rep() {
-        doc.scrollTop += 2;
+        doc.scrollTop += i % 3 - 1;
         console.log(i++);
 
-        if (i < 20) {
+        if (i < 10) {
           window.requestAnimationFrame(rep);
         }
       })
