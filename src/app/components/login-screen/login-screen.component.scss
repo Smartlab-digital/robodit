@@ -21,8 +21,10 @@
     overflow: scroll;
   }
 
+  box-sizing: border-box;
   width: 100%;
-  height: calc(100%);
+  height: calc(100vh);
+  //padding-bottom: calc(100vh - 100%);
   background: var(--color-main-gray-background);
 
   .form{
