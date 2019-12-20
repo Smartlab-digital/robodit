@@ -17,8 +17,16 @@ export class SearchInputComponent implements OnInit {
 
     setTimeout(() => {
       const doc = document.getElementById('content');
-      doc.scrollBy(1, 1);
-      doc.scrollTop++;
+
+      let i = 0;
+      window.requestAnimationFrame( function rep() {
+        doc.scrollTop += 2;
+        console.log(i++);
+
+        if (i < 20) {
+          window.requestAnimationFrame(rep);
+        }
+      })
     });
   }
 
