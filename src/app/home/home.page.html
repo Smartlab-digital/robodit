@@ -45,7 +45,7 @@
     <app-modal-editor #modalEditor></app-modal-editor>
 
     <h3 class="header">Онлайн состояние линий</h3>
-    <div class="cards-list column margin" *ngIf="false">
+    <div class="cards-list column margin">
       <app-service-level-card></app-service-level-card>
       <app-service-level-card red-fill="border"></app-service-level-card>
       <app-service-level-card class="full" mode="full"></app-service-level-card>
@@ -53,7 +53,7 @@
     </div>
 
     <h3 class="header" style="margin-bottom: 4px;">Уровень обслуживания</h3>
-    <div class="cards-list column margin" *ngIf="false">
+    <div class="cards-list column margin">
       <app-service-level-card [chart_preview]="true"></app-service-level-card>
       <app-service-level-card [chart_preview]="true" red-fill="border"></app-service-level-card>
       <app-service-level-card [chart_preview]="true" class="full" mode="full"></app-service-level-card>
