@@ -63,14 +63,17 @@
     position: relative;
     z-index: 15;
 
-    padding: 9px 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    box-sizing: border-box;
+    height: var(--height);
+    width: var(--height);
   }
   .left-icon{
-    padding: 9px 8px;
-    padding-left: 6px !important;
-    margin-bottom: calc(0px - var(--height) + 7px);
-    margin-right: auto;
-    padding-bottom: 4px !important;
+    padding-left: 10px;
+    margin-bottom: calc(0px - var(--height));
 
   }
   .right-icon{
@@ -301,6 +304,6 @@
   transition: 0.12s all ease;
 
   &.reverse{
-    transform: rotateX(180deg);
+    transform: scaleY(-1);
   }
 }
