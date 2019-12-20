@@ -8,7 +8,17 @@ import {Component, Input, OnInit} from '@angular/core';
 export class SearchInputComponent implements OnInit {
   @Input('show-left-btn') showLeftBtn: boolean = true;
 
-  show: boolean = false;
+  _show: boolean = false;
+  get show ():boolean {
+    return this._show;
+  }
+  set show(value:boolean) {
+    this._show = value;
+
+    setTimeout(() => {
+      window.scrollTo(1, 1);
+    });
+  }
 
   constructor() { }
 
