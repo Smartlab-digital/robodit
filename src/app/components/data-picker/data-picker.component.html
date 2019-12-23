@@ -53,7 +53,7 @@
         </tr>
         <tr>
           <td>18</td>
-          <td class="focus">19</td>
+          <td class="focus" (click)="inputDate()">19</td>
           <td>20</td>
           <td>21</td>
           <td>22</td>
@@ -79,6 +79,11 @@
         <ion-input [readonly]="true" value="08:00" class="input time-input"></ion-input>
         <h6 class="header aling-margin">c</h6>
         <ion-input [readonly]="true" value="12:30" class="input time-input"></ion-input>
+
+        <div class="hide">
+          <ion-datetime #dateInput pickerFormat="MMM DDD" [value]="todayDate"  [cancelText]="''" mode="ios" [pickerOptions]="datePickerOptions"></ion-datetime>
+          <ion-datetime #timeInput display-format="HH mm"  [value]="todayDate" (ionChange)="selectedDate()" [cancelText]="''" mode="ios" [pickerOptions]="pickerOptions"></ion-datetime>
+        </div>
       </div>
     </div>
   </div>

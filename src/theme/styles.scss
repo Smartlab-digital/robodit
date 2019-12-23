@@ -80,3 +80,33 @@
     height: 25px;
   }
 }
+
+
+.data-picker{
+  color: #DADADA;
+  font-family: Roboto;
+
+  --background: var(--color-over-white-light);
+
+  .picker-opt{
+    transition: 0.8s color ease;
+    color: #DADADA;
+  }
+  .picker-opt-selected{
+    transition: 0.8s color ease;
+    //color: var(--color-over-white-light);
+  }
+
+  .picker-below-highlight.sc-ion-picker-ios, .picker-above-highlight.sc-ion-picker-ios{
+    background: rgba(0, 0, 0, 0) !important;
+  }
+
+  .picker-toolbar{
+    background: var(--color-main-gray-background);
+    border: none;
+  }
+
+  .picker-wrapper{
+    border: none
+  }
+}
