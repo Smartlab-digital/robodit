@@ -6,7 +6,7 @@ import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
   styleUrls: ['./data-picker.component.scss'],
 })
 export class DataPickerComponent implements OnInit {
-  _show: boolean = false;
+  _show: boolean = true;
   @ViewChild('dateInput', null) date: any;
   @ViewChild('timeInput', null) time: any;
 
@@ -21,9 +21,68 @@ export class DataPickerComponent implements OnInit {
 
   constructor() { }
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.generateCalendar();
+  }
 
-  show() {
+
+  rows: any = [[]];
+
+  generateCalendar() {
+    let startDate = new Date(this.todayDate);
+    startDate.setMonth(11);
+    startDate.setDate(1);
+
+    let preMonth = new Date(startDate);
+    preMonth.setDate(0);
+
+    const rows = [[]];
+
+    for (let i = this.getDay(startDate); i > 0; i--) {
+      let date = new Date(preMonth);
+      date.setDate(date.getDate() - i + 1);
+      rows[0].push({
+        value: date,
+        date:  date.getDate(),
+        month: date.getMonth()
+      });
+    }
+
+    let row = 0;
+    let date =  new Date(startDate);
+    for (let i = 1; (startDate.getMonth() == date.getMonth() || date.getDay() != 0); i++) {
+      date = new Date(startDate);
+      date.setDate(1);
+      date.setDate(i);
+
+      rows[row].push({
+        value: date,
+        date:  date.getDate(),
+        month: date.getMonth()
+      });
+
+      if (date.getDay() == 0) {
+        rows.push([]);
+        row++;
+      }
+    }
+
+    this.rows = rows;
+  }
+  getDay(date) {
+    return {
+      0:6,
+      1:0,
+      2:1,
+      3:2,
+      4:3,
+      5:4,
+      6:5
+    }[date.getDay()];
+  }
+
+
+    show() {
     this._show = true;
     console.log(this.todayDate);
   }
@@ -40,6 +99,29 @@ export class DataPickerComponent implements OnInit {
   }
   selectedDate() {
     console.log(this.time.value);
+  }
+
+  selected: {
+    from: Date | string;
+    to?: Date | string;
+  };
+  select(date) {
+    if (!this.selected || this.selected.to ) {
+      this.selected = {
+        from:  date.value
+      }
+    } else {
+      this.selected.to = date.value;
+    }
+  }
+  isActive(date) {
+    if (this.selected && this.selected.to) {
+      return +(new Date(this.selected.to)) >= +(new Date(date.value))
+        &&
+        +(new Date(this.selected.from)) <= +(new Date(date.value));
+    } else {
+      return false;
+    }
   }
 
 
