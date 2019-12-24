@@ -9,12 +9,23 @@
 
     <div class="group">
       <h6 class="header" style="margin: 0">
-        1 октября – 8 октября
+        <span
+            *ngIf="selected?.from"
+            (click)="selected?.from && inputDate('from', selected?.from)"
+        >
+          {{selected?.from?.getDate()}} {{month[selected?.from?.getMonth()]}}
+        </span>
+        <span
+            *ngIf="selected?.to"
+            (click)="selected?.to && inputDate('to', selected?.to)"
+        >
+          - {{selected?.to?.getDate()}} {{month[selected?.to?.getMonth()]}}
+        </span>
       </h6>
       <hr>
 
       <table class="calendar-table">
-        <caption>октябрь 2019</caption>
+        <caption>{{ month[_todayDate?.getMonth()] }} {{ _todayDate?.getFullYear() }}</caption>
         <tr>
           <th>ПН</th>
           <th>ВТ</th>
@@ -25,53 +36,11 @@
           <th>ВС</th>
         </tr>
         <tr *ngFor="let week of rows" >
-          <td *ngFor="let day of week" class="" [ngClass]="{ active: isActive(day) }" (click)="select(day)">{{ day.date }}</td>
+          <td *ngFor="let day of week"
+              [ngClass]="{ active: isActive(day), focus: isFocus(day) }"
+              (click)="select(day)"
+          >{{ day.date }}</td>
         </tr>
-        <!--<tr>
-          <td>27</td>
-          <td>28</td>
-          <td>29</td>
-          <td>30</td>
-          <td>1</td>
-          <td>2</td>
-          <td>3</td>
-        </tr>
-        <tr>
-          <td>4</td>
-          <td>5</td>
-          <td>6</td>
-          <td>7</td>
-          <td>8</td>
-          <td>9</td>
-          <td class="active">10</td>
-        </tr>
-        <tr>
-          <td class="active">11</td>
-          <td class="active">12</td>
-          <td class="active">13</td>
-          <td class="active">14</td>
-          <td class="active">15</td>
-          <td>16</td>
-          <td>17</td>
-        </tr>
-        <tr>
-          <td>18</td>
-          <td class="focus" (click)="inputDate()">19</td>
-          <td>20</td>
-          <td>21</td>
-          <td>22</td>
-          <td>23</td>
-          <td>23</td>
-        </tr>
-        <tr>
-          <td>24</td>
-          <td>25</td>
-          <td>26</td>
-          <td>27</td>
-          <td>28</td>
-          <td>29</td>
-          <td>30</td>
-        </tr>-->
       </table>
     </div>
     <div class="group full-width row justify-between" style="padding-bottom: 10px">
@@ -79,13 +48,33 @@
 
       <div  class="row">
         <h6 class="header aling-margin">c</h6>
-        <ion-input [readonly]="true" value="08:00" class="input time-input"></ion-input>
+        <ion-input [readonly]="true"
+                   (click)="selected?.from && inputTime('from', selected?.from)"
+                   [value]="selected?.from | date:'HH:mm'"
+                   class="input time-input"
+        ></ion-input>
         <h6 class="header aling-margin">c</h6>
-        <ion-input [readonly]="true" value="12:30" class="input time-input"></ion-input>
-
+        <ion-input [readonly]="true"
+                   (click)="selected?.from && inputTime('to', selected?.to)"
+                   [value]="selected?.to | date:'HH:mm'"
+                   class="input time-input"
+        ></ion-input>
         <div class="hide">
-          <ion-datetime #dateInput pickerFormat="MMM DDD" [value]="todayDate"  [cancelText]="''" mode="ios" [pickerOptions]="datePickerOptions"></ion-datetime>
-          <ion-datetime #timeInput display-format="HH mm"  [value]="todayDate" (ionChange)="selectedDate()" [cancelText]="''" mode="ios" [pickerOptions]="pickerOptions"></ion-datetime>
+          <ion-datetime
+            #dateInput pickerFormat="MMM DDD"
+
+            [value]="todayDate"
+            (ionChange)="selectedDate(dateInput.value)"
+            [cancelText]="''" mode="ios"
+            [pickerOptions]="pickerOptions"
+          ></ion-datetime>
+          <ion-datetime
+            #timeInput display-format="HH mm"
+            [value]="todayDate"
+            (ionChange)="selectedDate(timeInput.value, true)"
+            [cancelText]="''" mode="ios"
+            [pickerOptions]="pickerOptions"
+          ></ion-datetime>
         </div>
       </div>
     </div>

@@ -65,8 +65,6 @@ export class ServiceLevelCardComponent implements OnInit {
     window.requestAnimationFrame(() => {
       if (i > 10) return;
 
-      console.log(i);
-
       if (!this._chart || !this.chartWidth) return this.refresh(i + 1);
       return (this._chart as any).refresh();
     });
@@ -155,7 +153,6 @@ export class ServiceLevelCardComponent implements OnInit {
             return value + ' '.repeat(maxLength - value.length + 2);
           }
         }
-
       }]
     },
   };

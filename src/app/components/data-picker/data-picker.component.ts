@@ -6,18 +6,8 @@ import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
   styleUrls: ['./data-picker.component.scss'],
 })
 export class DataPickerComponent implements OnInit {
-  _show: boolean = true;
   @ViewChild('dateInput', null) date: any;
   @ViewChild('timeInput', null) time: any;
-
-  _todayDate = new Date(  Date.now() - (Date.now() % (1000 * 60 * 60 * 24)) ).toISOString();
-  get todayDate() {
-    return this._todayDate;
-  }
-  set todayDate(v) {
-    console.warn(v);
-    this._todayDate = v;
-  }
 
   constructor() { }
 
@@ -26,8 +16,26 @@ export class DataPickerComponent implements OnInit {
   }
 
 
-  rows: any = [[]];
+  /* ----------------------------- Render calendar ------------------------------ */
+  month = [
+    'январь',
+    'февраль',
+    'март',
+    'апрель',
+    'май',
+    'июнь',
+    'июль',
+    'август',
+    'сентябрь',
+    'октябрь',
+    'ноябрь',
+    'декабрь'
+  ];
 
+  _todayDate: Date = new Date(Date.now() - (Date.now() % (1000 * 60 * 60 * 24)));
+  todayDate = new Date(Date.now() - (Date.now() % (1000 * 60 * 60 * 24))).toISOString();
+
+  rows: any = [[]];
   generateCalendar() {
     let startDate = new Date(this.todayDate);
     startDate.setMonth(11);
@@ -82,7 +90,63 @@ export class DataPickerComponent implements OnInit {
   }
 
 
-    show() {
+
+  /* ------------------------------- Picker logic ------------------------------- */
+  target: 'from' | 'to' = null;
+  inputDate(target: 'from' | 'to', value: Date) {
+    if (!value) {
+      return;
+    }
+
+    this.target = target;
+    this.date.value = value.toISOString();
+    this.date.el.value = value.toISOString();
+    this.date.el.click();
+  }
+  inputTime(target: 'from' | 'to', value: Date) {
+    if (!value) {
+      return;
+    }
+    value = new Date(value);
+
+    this.target = target;
+    this.time.value = value.toISOString();
+    this.time.el.value = value.toISOString();
+    this.time.el.click();
+  }
+  selectedDate(v, toRememberOffset:boolean = false) {
+    if (!v || !this.target) return;
+
+    if (toRememberOffset) {
+      this.addsValues[this.target] = +(new Date(v)) - +this.toDateSeconds(new Date(v));
+      console.log(this.addsValues);
+    }
+
+    this.selected[this.target] = new Date(v);
+    this.validateInterval();
+  }
+
+  pickerOptions = {
+    cssClass: 'data-picker',
+    mode: 'ios'
+  };
+
+  validateInterval() {
+    if (!this.selected || !this.selected.to) {
+      return;
+    }
+
+    if (+(new Date(this.selected.from)) > +(new Date(this.selected.to))) {
+      this.selected = {
+        from: this.selected.to,
+        to: this.selected.from
+      };
+    }
+  }
+
+  /* -------------------------------- Show logic ------------------------------- */
+  _show: boolean = true;
+  show() {
     this._show = true;
     console.log(this.todayDate);
   }
@@ -90,55 +154,53 @@ export class DataPickerComponent implements OnInit {
     this._show = false;
   }
 
-  inputDate() {
-    this.date.el.click();
-  }
-  inputTime() {
-    this.time.value = this.date.value;
-    this.time.el.click();
-  }
-  selectedDate() {
-    console.log(this.time.value);
-  }
-
+  /* ----------------------------- Select interval  ---------------------------- */
+  addsValues = {
+    from: 0,
+    to: 0
+  };
   selected: {
     from: Date | string;
     to?: Date | string;
   };
   select(date) {
-    if (!this.selected || this.selected.to ) {
+    const v = date.value;
+    if (
+      !this.selected
+      ||
+      (this.selected.to &&  +this.toDateSeconds(v) < +this.toDateSeconds(this.selected.to))
+      ||
+      +this.toDateSeconds(v) < +this.toDateSeconds(this.selected.from)
+    ) {
       this.selected = {
-        from:  date.value
+        from:  new Date(+date.value + this.addsValues.from)
       }
     } else {
-      this.selected.to = date.value;
+      if (+this.toDateSeconds(v) > +this.toDateSeconds(this.selected.from)) {
+        this.selected.to = new Date(+date.value + this.addsValues.to);
+      } else {
+        this.selected = {
+          from:  new Date(+date.value + this.addsValues.from),
+          to: new Date(+this.toDateSeconds(this.selected.from) + this.addsValues.to)
+        }
+      }
     }
   }
   isActive(date) {
     if (this.selected && this.selected.to) {
       return +(new Date(this.selected.to)) >= +(new Date(date.value))
         &&
-        +(new Date(this.selected.from)) <= +(new Date(date.value));
+        +(this.toDateSeconds(this.selected.from)) <= +(new Date(date.value));
     } else {
       return false;
     }
   }
-
-
-  pickerOptions = {
-    cssClass: 'data-picker',
-    mode: 'ios'
-  };
-  get datePickerOptions() {
-    return {
-      ...this.pickerOptions,
-      buttons: [
-        {},
-        {
-          text: 'Done',
-          handler: this.inputTime.bind(this)
-        }
-      ]
+  isFocus(date) {
+    if (this.selected && !this.selected.to) {
+      return +this.toDateSeconds(date.value) == +this.toDateSeconds(this.selected.from);
     }
+  }
+  toDateSeconds(v) {
+    return new Date( +v - ((+v) % (1000 * 60 * 60 * 24)))
   }
 }
