@@ -32,8 +32,8 @@ export class DataPickerComponent implements OnInit {
     'декабрь'
   ];
 
-  _todayDate: Date = new Date(Date.now() - (Date.now() % (1000 * 60 * 60 * 24)));
-  todayDate = new Date(Date.now() - (Date.now() % (1000 * 60 * 60 * 24))).toISOString();
+  _todayDate: Date = new Date(this.toDateSeconds(new Date()));
+  todayDate =  new Date(this.toDateSeconds(new Date())).toISOString();
 
   rows: any = [[]];
   generateCalendar() {
@@ -145,7 +145,7 @@ export class DataPickerComponent implements OnInit {
   }
 
   /* -------------------------------- Show logic ------------------------------- */
-  _show: boolean = true;
+  _show: boolean = false;
   show() {
     this._show = true;
     console.log(this.todayDate);
@@ -156,8 +156,8 @@ export class DataPickerComponent implements OnInit {
 
   /* ----------------------------- Select interval  ---------------------------- */
   addsValues = {
-    from: 0,
-    to: 0
+    from: 1000 * 60 * 60 * 8,
+    to: 1000 * 60 * 60 * 12
   };
   selected: {
     from: Date | string;
@@ -185,6 +185,8 @@ export class DataPickerComponent implements OnInit {
         }
       }
     }
+
+    this.validateInterval();
   }
   isActive(date) {
     if (this.selected && this.selected.to) {
@@ -200,7 +202,14 @@ export class DataPickerComponent implements OnInit {
       return +this.toDateSeconds(date.value) == +this.toDateSeconds(this.selected.from);
     }
   }
-  toDateSeconds(v) {
-    return new Date( +v - ((+v) % (1000 * 60 * 60 * 24)))
+  toDateSeconds(d) {
+    let v = new Date(d);
+
+    v.setHours(0);
+    v.setMinutes(0);
+    v.setSeconds(0);
+    v.setMilliseconds(0);
+
+    return +v;
   }
 }
