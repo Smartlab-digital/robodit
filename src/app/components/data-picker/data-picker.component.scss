@@ -76,3 +76,26 @@
 h6.aling-margin{
   margin: 0 6px 0 10px;
 }
+
+.btn {
+  height: 40px;
+  width: 100%;
+  margin: 10px 0;
+  --box-shadow: none;
+  font-size: 12px;
+  text-transform: none;
+
+  --background: var(--btn-color);
+  --background-active: var(--btn-color);
+  --background-focused: var(--btn-color);
+  --background-hover: var(--btn-color);
+  --background-activated: var(--btn-color);
+
+  &:not(:last-child) {
+    margin-right: 8px;
+  }
+
+  &.green {
+    --btn-color: var(--color-main-green);
+  }
+}
