@@ -7,6 +7,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ModalEditorComponent implements OnInit {
   _show: boolean = false;
+  editMode: boolean  = false;
 
   timers = [
     '15 M',
@@ -17,12 +18,21 @@ export class ModalEditorComponent implements OnInit {
     '1н',
     '1мес'
   ];
+  minitimers = [
+    '1 С',
+    '1 М',
+    '15 M',
+    '30 М',
+    '1 Ч',
+    'День'
+  ]
 
   constructor() { }
 
   ngOnInit() {}
 
-  show() {
+  show(editMode = false) {
+    this.editMode = editMode;
     this._show = true;
     return;
   }

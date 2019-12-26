@@ -1,7 +1,8 @@
 <div class="modal-box" *ngIf="_show">
   <div class="modal">
     <div class="row justify-between">
-      <h3 class="header" style="margin-top: 0px; margin-bottom: 4px">Создать дашборд</h3>
+      <h3 class="header" *ngIf="!editMode" style="margin-top: 0px; margin-bottom: 4px">Создать дашборд</h3>
+      <h3 class="header" *ngIf="editMode" style="margin-top: 0px; margin-bottom: 4px">Изменить дашборд</h3>
       <svg (click)="hide()" width="15" height="15" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg">
         <path d="M8.82658 7.50082L14.7251 1.60226C15.0916 1.2361 15.0916 0.641989 14.7251 0.27583C14.3587 -0.0906413 13.7652 -0.0906413 13.3987 0.27583L7.50016 6.17439L1.60128 0.27583C1.23481 -0.0906413 0.641325 -0.0906413 0.274854 0.27583C-0.0916178 0.641989 -0.0916178 1.2361 0.274854 1.60226L6.17373 7.50082L0.274854 13.3994C-0.0916178 13.7655 -0.0916178 14.3596 0.274854 14.7258C0.458089 14.9087 0.698234 15.0003 0.938067 15.0003C1.1779 15.0003 1.41804 14.9087 1.60128 14.7255L7.50016 8.82693L13.3987 14.7255C13.582 14.9087 13.8221 15.0003 14.0619 15.0003C14.3018 15.0003 14.5419 14.9087 14.7251 14.7255C15.0916 14.3593 15.0916 13.7652 14.7251 13.3991L8.82658 7.50082Z" fill="white"/>
       </svg>
@@ -50,7 +51,7 @@
         <div class="row full-width justify-start" style="padding: 10px 16px 2px 16px;">
           <app-check-box></app-check-box>
           <h5 class="header">
-            Линия МПГУ
+            Отображать график
           </h5>
         </div>
 
@@ -60,70 +61,109 @@
         <div class="row full-width justify-start" style="margin-top: 8px;">
           <app-check-box colors-schema="dark"></app-check-box>
           <h5 class="header">
-            Разрешить изменять выбранные линии
+            Автоматически обновлять график
           </h5>
         </div>
 
         <h5 class="padding header">Частота обновления</h5>
-        <app-search-input style="margin-bottom: 10px;" [show-left-btn]="false"></app-search-input>
+        <div style="padding: 0 15px">
+          <ion-input class="input light" placeholder="10 мин" style="margin-bottom: 10px;"></ion-input>
+        </div>
 
         <h5 class="padding header">Группировка по умолчанию</h5>
         <div style="padding: 0 16px">
-          <app-row-select mode="multi-rows"  [options]="timers"></app-row-select>
+          <app-row-select mode="multi-rows"  [options]="minitimers"></app-row-select>
         </div>
       </div>
     </div>
 
 
     <div class="header">
-      Настройки линий по умолчанию
+      Отображаемые параметры
     </div>
     <div class="items-group zero-padding">
       <div class="row full-width justify-start">
         <h5 class="y-margin header">
-          Линия МПГУ
+          Online состояние линий
         </h5>
       </div>
       <div class="row full-width justify-start">
         <app-check-box></app-check-box>
         <h5 class="header">
-          Линия МПГУ
+          Максимальное время ожидания
         </h5>
       </div>
       <div class="row full-width justify-start">
         <app-check-box></app-check-box>
         <h5 class="header">
-          Линия МПГУ
+          Операторов на линии
+        </h5>
+      </div>
+      <div class="row full-width justify-start">
+        <app-check-box></app-check-box>
+        <h5 class="header">
+          Операторов Not Ready
         </h5>
       </div>
       <div class="row full-width justify-start">
         <h5 class="y-margin header">
-          Линия МПГУ
+          Показатели уровня обслуживания
         </h5>
       </div>
       <div class="row full-width justify-start">
         <app-check-box></app-check-box>
         <h5 class="header">
-          Линия МПГУ
+          SL (Service Level <45 sec)
         </h5>
       </div>
+      <div class="row full-width justify-start">
+        <app-check-box></app-check-box>
+        <h5 class="header">
+          FCR (First Call Resolution)
+        </h5>
+      </div>
+      <div class="row full-width justify-start">
+        <app-check-box></app-check-box>
+        <h5 class="header">
+          LCR (Lost Call Rate)
+        </h5>
+      </div>
+
+      <div class="row full-width justify-start">
+        <h5 class="y-margin header">
+          Другие показатели
+        </h5>
+      </div>
+      <div class="row full-width justify-start">
+        <app-check-box></app-check-box>
+        <h5 class="header">
+          Среднее время ожидания
+        </h5>
+      </div>
+      <div class="row full-width justify-start">
+        <app-check-box></app-check-box>
+        <h5 class="header">
+          Сред. длит. разговора
+        </h5>
+      </div>
+
       <div class="zero-item"></div>
     </div>
 
 
     <div class="header">
-      Параметры графика
+      Топ тематик
     </div>
     <div class="items-group" style="padding-bottom: 20px;">
       <div class="column children-full-width full-width">
         <div class="row full-width justify-start" style="padding: 0px">
           <app-check-box></app-check-box>
           <h5 class="header">
-            Линия МПГУ
+            Отображать топ тематик
           </h5>
         </div>
 
-        <h5 class="header">Параметр по умолчанию</h5>
+        <h5 class="header">Количество отображаемых тематик</h5>
         <ion-input class="input light" placeholder="10"></ion-input>
       </div>
     </div>
@@ -133,8 +173,15 @@
     <div class="header">Настройки доступа к дашборду</div>
     <div class="items-group zero-padding">
       <div class="row full-width justify-start">
+        <app-check-box colors-schema="dark"></app-check-box>
+        <h5 class="header">
+          Отображать в мобильном клиенте
+        </h5>
+      </div>
+
+      <div class="row full-width justify-start">
         <h5 class="y-margin header">
-          Контакт-центры (линии)
+          Линия
         </h5>
       </div>
       <div class="row full-width justify-start">
@@ -154,6 +201,30 @@
           Любая группа
         </h5>
       </div>
+
+
+      <div class="row full-width justify-start">
+        <h5 class="y-margin header">
+          Навыки
+        </h5>
+      </div>
+      <div class="row full-width justify-start">
+        <app-check-box></app-check-box>
+        <h5 class="header">
+          Любой навык
+        </h5>
+      </div>
+      <div class="row full-width justify-start">
+        <h5 class="y-margin header">
+          Языки
+        </h5>
+      </div>
+      <div class="row full-width justify-start">
+        <app-check-box></app-check-box>
+        <h5 class="header">
+          Любой язык
+        </h5>
+      </div>
       <div class="zero-item"></div>
     </div>
 
@@ -167,7 +238,9 @@
           Удалить
         </ion-button>
 
-        <ion-button class="btn light-gray">Cancel</ion-button>
+        <ion-button class="btn light-gray">
+          Отмена
+        </ion-button>
       </div>
       <ion-button class="btn green">
         Сохранить
